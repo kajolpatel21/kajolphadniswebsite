@@ -954,6 +954,7 @@
       if (data.success) {
         document.getElementById('contact-form-wrap').hidden = true;
         document.getElementById('contact-success').hidden = false;
+        gtag('event', 'generate_lead', { method: 'contact_form' });
       } else { throw new Error('send failed'); }
     } catch(_) {
       errEl.textContent = 'Something went wrong — please try again, or email ' + CONTACT_EMAIL + ' directly.';
@@ -1126,6 +1127,7 @@
         }
         if(okEl)okEl.hidden=false;
         kf.style.display='none';
+        gtag('event', 'sign_up', { method: 'newsletter' });
       })
       .catch(function(err){ fail((err&&err.message?err.message:'Something went wrong')+' \u2014 please try again, or email hello@kajolphadnis.com.'); });
   });
