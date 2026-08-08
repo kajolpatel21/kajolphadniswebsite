@@ -245,7 +245,7 @@ QUESTIONS.forEach(function(item,i){
 function show(id){ document.querySelectorAll('.step').forEach(function(s){s.classList.remove('active');}); document.getElementById(id).classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
 function progress(n){ bar.style.width=(n/QUESTIONS.length)*100+'%'; }
 
-document.getElementById('start').addEventListener('click',function(){ idx=0; answers=[]; show('q0'); progress(0); });
+document.getElementById('start').addEventListener('click',function(){ idx=0; answers=[]; show('q0'); progress(0); gtag('event','quiz_start',{quiz_name:'stuck_type_diagnostic'}); });
 
 (function(){
   var m = /[?&]a1=([ABCD])/.exec(location.search);
@@ -255,6 +255,7 @@ document.getElementById('start').addEventListener('click',function(){ idx=0; ans
   var first = document.querySelector('#q0 .q-opt[data-type="'+m[1]+'"]');
   if(first) first.classList.add('chosen');
   show('q1'); progress(1);
+  gtag('event','quiz_start',{quiz_name:'stuck_type_diagnostic',entry:'homepage_seed'});
   if(history.replaceState) history.replaceState(null,'',location.pathname);
 })();
 
@@ -278,6 +279,7 @@ function finish(){
   var winner='A', max=-1;
   ['A','B','C','D'].forEach(function(k){ if(tally[k]>max){max=tally[k]; winner=k;} });
   var r=RESULTS[winner]; window.__result=r.name;
+  gtag('event','quiz_complete',{quiz_name:'stuck_type_diagnostic',quiz_result:r.name});
   document.getElementById('r-name').textContent=r.name;
   document.getElementById('r-desc').textContent=r.desc;
   var fx=document.getElementById('r-fixes'); fx.innerHTML='';
@@ -302,6 +304,7 @@ document.getElementById('lead').addEventListener('submit',function(e){
     ok.innerHTML = slug ? ('🎉 Your plan is ready — <a href="'+slug+'" style="color:#fff;text-decoration:underline;font-weight:800">read your '+window.__result+' playbook →</a><br><span style="font-weight:400;font-size:.88em;opacity:.92">Check your inbox to confirm your subscription for the follow-ups.</span>') : '🎉 On its way — check your inbox to confirm.';
     ok.style.display='block';
     form.style.display='none';
+    gtag('event','sign_up',{method:'quiz_stuck_type',quiz_result:window.__result||''});
   }
   if(errEl)errEl.hidden=true;
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ fail('Please enter a valid email address.'); return; }
