@@ -2,6 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>
+/* Google Consent Mode v2 — analytics denied until the visitor accepts (see consent.js).
+   Must run before the GTM/gtag loaders below. Honours a previously saved choice. */
+(function(){
+  var c=null; try{c=localStorage.getItem('kp_consent');}catch(e){}
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent','default',{
+    analytics_storage: c==='granted' ? 'granted' : 'denied',
+    ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied'
+  });
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-TWP7R8LZ');</script>
 <!-- End Google Tag Manager -->
@@ -15,6 +28,9 @@
   gtag('config', 'G-4LRWS1GXM9');
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <title>Consulting &amp; Corporate Career Insights | Ex-Deloitte</title>
 <meta name="description" content="Essays and playbooks on getting promoted and building a career in consulting and corporate, from ex-Deloitte consultant Kajol Phadnis.">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -295,5 +311,6 @@
 })();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/consent.js"></script>
 </body>
 </html>
