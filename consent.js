@@ -16,6 +16,8 @@
     '.kp-accept:hover{background:#ffb02e}' +
     '.kp-decline{background:transparent;color:#faf7f2;border:1.5px solid rgba(250,247,242,.45)!important}' +
     '.kp-decline:hover{border-color:#faf7f2!important}' +
+    '.kp-consent a{color:#f59e0b;font-weight:700;text-decoration:none}' +
+    '.kp-consent a:hover{text-decoration:underline}' +
     '@media(max-width:480px){.kp-consent{left:10px;right:10px;bottom:10px;padding:18px}}';
   var style = document.createElement('style');
   style.textContent = css;
@@ -26,7 +28,7 @@
   box.setAttribute('role', 'dialog');
   box.setAttribute('aria-label', 'Cookie consent');
   box.innerHTML =
-    '<p><strong>A quick cookie question.</strong> I use Google Analytics to understand which pages and quizzes people find useful. No ads, no selling data — just analytics. Okay with that?</p>' +
+    '<p><strong>A quick cookie question.</strong> I use Google Analytics to understand which pages and quizzes people find useful. No ads, no selling data — just analytics. Okay with that? <a href="/privacy">Privacy policy</a></p>' +
     '<div class="kp-consent-btns">' +
     '<button type="button" class="kp-accept">Accept analytics</button>' +
     '<button type="button" class="kp-decline">Essential only</button>' +
