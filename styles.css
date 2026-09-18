@@ -530,3 +530,15 @@ section.wrap:has(+ section.next-step-wrap){padding-bottom:28px}
   font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.01em}
 .byline .sep{color:var(--line)}
 .byline .upd{color:var(--teal)}
+
+/* Diagnostic pages: crawlable list of the result playbooks */
+.typelist{list-style:none;margin:28px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(2,1fr);gap:12px}
+.typelist a{display:block;height:100%;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;padding:18px 20px;text-decoration:none;
+  transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+.typelist a:hover{transform:translateY(-3px);border-color:var(--marigold);
+  box-shadow:0 14px 30px rgba(44,35,51,.09);text-decoration:none}
+.typelist strong{display:block;color:var(--ink);font-size:1.02rem;letter-spacing:-.01em}
+.typelist span{display:block;color:var(--ink-soft);font-size:.9rem;margin-top:5px;line-height:1.55}
+@media(max-width:700px){.typelist{grid-template-columns:1fr}}
