@@ -56,7 +56,7 @@
 <meta name="twitter:image" content="https://www.kajolphadnis.com/og-image.jpg">
 <meta name="twitter:image:alt" content="Kajol Phadnis — strategy and growth consultant, ex-Deloitte. London &amp; Dubai.">
 
-<!-- Structured data (Person + WebSite + Service + FAQ) -->
+<!-- Structured data (Person + WebSite + ProfessionalService + VideoObject) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -985,16 +985,6 @@
     const errEl = document.getElementById('contact-error');
     errEl.hidden = true;
     if (!name || !email || !message) { errEl.textContent = 'Please fill in your name, email and message.'; errEl.hidden = false; return; }
-    if (CONTACT_KEY === 'PENDING') {
-      // No form backend configured yet. Hand off to the visitor's own mail client rather than a
-      // Gmail popup — window.open is blocked by default on mobile and for non-Gmail users.
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\n${message}`);
-      const subject = encodeURIComponent('Enquiry via kajolphadnis.com');
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-      errEl.textContent = `Opening your email app to send this to ${CONTACT_EMAIL}. If nothing happens, email ${CONTACT_EMAIL} directly — your message hasn't been sent yet.`;
-      errEl.hidden = false;
-      return;
-    }
     const btn = cForm.querySelector('button[type="submit"]');
     btn.disabled = true; btn.textContent = 'Sending…';
     try {
