@@ -637,6 +637,22 @@
   .modal-close:hover{color:var(--ink)}
   .modal .form-success{background:var(--teal);color:#fff;border-radius:14px;padding:18px 20px;font-weight:600}
   .modal .form-error{color:#c0432b;font-size:.88rem;margin-top:10px}
+  /* Read list: named links to the articles that earn the most search traffic */
+  .readlist{list-style:none;margin:36px 0 0;padding:0;border-top:1px solid var(--line)}
+  .readlist li{border-bottom:1px solid var(--line)}
+  .readlist a{display:flex;align-items:baseline;gap:18px;padding:20px 6px;text-decoration:none;
+    transition:background .16s ease,padding-left .16s ease}
+  .readlist a:hover{background:var(--bg-soft);padding-left:14px;text-decoration:none}
+  .rl-main{flex:1;min-width:0}
+  .rl-t{display:block;font-weight:700;font-size:1.06rem;color:var(--ink);line-height:1.35;letter-spacing:-.01em}
+  .readlist a:hover .rl-t{color:var(--marigold-text)}
+  .rl-d{display:block;font-size:.92rem;color:var(--ink-soft);margin-top:5px;line-height:1.6;max-width:62ch}
+  .rl-m{flex:none;font-size:.75rem;font-weight:700;color:var(--teal);white-space:nowrap;
+    background:var(--teal-soft);border-radius:100px;padding:4px 11px}
+  @media(max-width:600px){
+    .readlist a{flex-direction:column;gap:8px;align-items:flex-start}
+    .readlist a:hover{padding-left:6px}
+  }
 </style>
 </head>
 <body>
@@ -797,6 +813,21 @@
     <p class="section-intro">Honest, practical videos on consulting careers and the corporate truths nobody tells you.</p>
     <div class="video-grid"><a class="video-card reveal" data-yt="Ea2fbBy0rjM" href="https://www.youtube.com/watch?v=Ea2fbBy0rjM" target="_blank" rel="noopener"><div class="thumb" style="background-image:url('https://i.ytimg.com/vi/Ea2fbBy0rjM/hqdefault.jpg');background-size:cover;background-position:center"><span class="vdur">9:12</span></div><div class="meta"><span class="tag">Careers</span><h3>Career mistakes I regret — a manager explains</h3></div></a><a class="video-card reveal" data-yt="JXxEVx2jELU" href="https://www.youtube.com/watch?v=JXxEVx2jELU" target="_blank" rel="noopener"><div class="thumb" style="background-image:url('https://i.ytimg.com/vi/JXxEVx2jELU/hqdefault.jpg');background-size:cover;background-position:center"><span class="vdur">11:07</span></div><div class="meta"><span class="tag">Consulting</span><h3>How I became a Big 4 consultant with no business degree</h3></div></a><a class="video-card reveal" data-yt="bquViYr3vqo" href="https://www.youtube.com/watch?v=bquViYr3vqo" target="_blank" rel="noopener"><div class="thumb" style="background-image:url('https://i.ytimg.com/vi/bquViYr3vqo/hqdefault.jpg');background-size:cover;background-position:center"><span class="vdur">11:37</span></div><div class="meta"><span class="tag">Consulting</span><h3>Make slides like consultants (McKinsey, BCG, Deloitte)</h3></div></a><a class="video-card reveal" data-yt="eQfbRYJxfNA" href="https://www.youtube.com/watch?v=eQfbRYJxfNA" target="_blank" rel="noopener"><div class="thumb" style="background-image:url('https://i.ytimg.com/vi/eQfbRYJxfNA/hqdefault.jpg');background-size:cover;background-position:center"><span class="vdur">8:38</span></div><div class="meta"><span class="tag">Personal brand</span><h3>Build your personal brand at work</h3></div></a><a class="video-card reveal" data-yt="BbnNr8exrfk" href="https://www.youtube.com/watch?v=BbnNr8exrfk" target="_blank" rel="noopener"><div class="thumb" style="background-image:url('https://i.ytimg.com/vi/BbnNr8exrfk/hqdefault.jpg');background-size:cover;background-position:center"><span class="vdur">8:39</span></div><div class="meta"><span class="tag">Promotion</span><h3>How to write a promotion case (and get promoted)</h3></div></a><a class="video-card reveal" href="https://www.youtube.com/@KajolPhadnis" target="_blank" rel="noopener"><div class="thumb t2"></div><div class="meta"><span class="tag">YouTube</span><h3>More on my channel →</h3></div></a></div>
     <div class="center-cta"><a class="btn btn-ink" href="https://www.youtube.com/@KajolPhadnis" target="_blank" rel="noopener">Watch more on YouTube →</a></div>
+  </div>
+</section>
+
+<section id="read">
+  <div class="wrap">
+    <h2>Start with the ones people <span class="hl">actually search for</span></h2>
+    <p class="section-intro">Honest accounts of pay, promotion and what consulting is really like — written from eight years inside Deloitte.</p>
+    <ul class="readlist">
+      <li><a href="/insights/consulting-salary-uk"><span class="rl-main"><span class="rl-t">Consulting salary UK: what you actually earn</span><span class="rl-d">Real UK salary bands by grade, MBB and Big 4, analyst to partner &mdash; and why two people with the same title get paid very differently.</span></span><span class="rl-m">6 min read</span></a></li>
+      <li><a href="/insights/consultant-to-manager-promotion"><span class="rl-main"><span class="rl-t">Consultant to manager: what actually gets you promoted</span><span class="rl-d">What promotion panels really assess &mdash; and how to prove you&rsquo;re ready before you ask.</span></span><span class="rl-m">8 min read</span></a></li>
+      <li><a href="/insights/mbb-vs-big-4"><span class="rl-main"><span class="rl-t">MBB vs Big 4: the differences that actually matter</span><span class="rl-d">Selectivity, strategy versus implementation, generalist versus specialist, and up-or-out.</span></span><span class="rl-m">6 min read</span></a></li>
+      <li><a href="/insights/mistakes-i-made-at-deloitte"><span class="rl-main"><span class="rl-t">8 mistakes I made in my first years at Deloitte</span><span class="rl-d">Going for promotion too early, betting on one sponsor, saying yes to everything.</span></span><span class="rl-m">9 min read</span></a></li>
+      <li><a href="/insights/what-i-wish-i-knew-before-consulting"><span class="rl-main"><span class="rl-t">What I wish I knew before becoming a consultant</span><span class="rl-d">The unglamorous truths about consulting &mdash; and why it&rsquo;s still worth it.</span></span><span class="rl-m">9 min read</span></a></li>
+    </ul>
+    <div class="center-cta"><a class="btn btn-ink" href="/insights">See all insights &rarr;</a></div>
   </div>
 </section>
 

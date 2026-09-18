@@ -524,3 +524,9 @@ section.wrap:has(+ section.next-step-wrap){padding-bottom:28px}
   .trust-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}
   .trust-track .award-pill[aria-hidden="true"]{display:none}
 }
+
+/* Article byline — published / updated dates, shown to readers as well as crawlers */
+.byline{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-top:20px;
+  font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.01em}
+.byline .sep{color:var(--line)}
+.byline .upd{color:var(--teal)}
