@@ -1,0 +1,107 @@
+name: Ping IndexNow
+
+# IndexNow tells Bing (and Yandex, Seznam, Naver) that pages have changed, so they
+# recrawl in hours rather than whenever they next get round to it. Google does NOT
+# participate, so this does nothing for Google Search Console numbers.
+#
+# Only pages that actually changed in the push are submitted — the protocol asks you
+# not to resubmit unchanged URLs, and doing so can get a host rate-limited.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'sitemap.xml'
+  workflow_dispatch:
+    inputs:
+      submit_all:
+        description: 'Submit every URL in sitemap.xml instead of just changed pages'
+        type: boolean
+        default: false
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # need the previous commit to diff against
+
+      - name: Work out which URLs changed
+        id: urls
+        shell: bash
+        run: |
+          set -euo pipefail
+          HOST=www.kajolphadnis.com
+
+          html_to_url() {   # consulting.html -> https://host/consulting   (vercel.json cleanUrls)
+            local f="$1"
+            [ "$f" = "index.html" ] && { echo "https://$HOST/"; return; }
+            echo "https://$HOST/${f%.html}"
+          }
+
+          urls=()
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.submit_all }}" = "true" ]; then
+            echo "Submitting every URL in sitemap.xml (manual run)."
+            mapfile -t urls < <(grep -oP '(?<=<loc>)[^<]+' sitemap.xml)
+          else
+            # Added or modified .html files in this push. Deletions are skipped:
+            # a URL that no longer exists has nothing useful to recrawl.
+            mapfile -t changed < <(
+              git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }} -- '*.html' || true
+            )
+            if [ ${#changed[@]} -eq 0 ]; then
+              echo "No HTML changed in this push."
+            fi
+            for f in "${changed[@]:-}"; do
+              [ -n "$f" ] && urls+=("$(html_to_url "$f")")
+            done
+          fi
+
+          if [ ${#urls[@]} -eq 0 ]; then
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          printf '%s\n' "${urls[@]}" | sort -u > urls.txt
+          echo "count=$(wc -l < urls.txt)" >> "$GITHUB_OUTPUT"
+          echo "Will submit:"; cat urls.txt
+
+      - name: Submit to IndexNow
+        if: steps.urls.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          HOST=www.kajolphadnis.com
+          KEY=db83f4fff203b5f98a2fd73a01f9e884
+
+          # The key is public by design: IndexNow verifies ownership by fetching
+          # https://HOST/KEY.txt, so it has to be readable by anyone. It is not a secret,
+          # and it only ever authorises recrawl requests for this host's own URLs.
+          jq -n --arg host "$HOST" --arg key "$KEY" \
+                --arg loc "https://$HOST/$KEY.txt" \
+                --rawfile urls urls.txt \
+                '{host:$host, key:$key, keyLocation:$loc,
+                  urlList: ($urls | rtrimstr("\n") | split("\n"))}' > body.json
+          cat body.json
+
+          code=$(curl -sS -o resp.txt -w '%{http_code}' \
+                   -X POST https://api.indexnow.org/indexnow \
+                   -H 'Content-Type: application/json; charset=utf-8' \
+                   --data @body.json)
+          echo "HTTP $code"; cat resp.txt || true
+
+          case "$code" in
+            200) echo "::notice::IndexNow accepted ${{ steps.urls.outputs.count }} URL(s)." ;;
+            202) echo "::notice::IndexNow accepted the URLs; key validation pending (normal on the first run)." ;;
+            400) echo "::error::Bad request — the JSON body was rejected."; exit 1 ;;
+            403) echo "::error::Key not valid. Check https://$HOST/$KEY.txt is live and contains exactly the key."; exit 1 ;;
+            422) echo "::error::URLs do not belong to $HOST, or the key does not match."; exit 1 ;;
+            429) echo "::warning::Rate limited by IndexNow. Not failing the build." ;;
+            *)   echo "::error::Unexpected response $code"; exit 1 ;;
+          esac
