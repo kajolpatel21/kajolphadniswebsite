@@ -49,7 +49,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=29">
+<link rel="stylesheet" href="styles.css?v=30">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -62,6 +62,7 @@
       {"@type":"HowToStep","name":"Address the gaps","text":"Name the one or two gaps and your plan to close them, to pre-empt objections."},
       {"@type":"HowToStep","name":"Make the ask","text":"State what you want, by when, with a 90-day plan behind it."}
     ]},
+    {"@type":"Product","name":"The Promotion Case Template","description":"An editable twelve-slide PowerPoint for building the business case for your promotion, with two complete formats to choose from. Written for analysts and consultants going for Consultant or Manager.","category":"Career templates","brand":{"@type":"Person","name":"Kajol Phadnis"},"offers":{"@type":"Offer","price":"9.99","priceCurrency":"GBP","availability":"https://schema.org/InStock","url":"https://www.kajolphadnis.com/promotion-case-template#buy","seller":{"@type":"Person","name":"Kajol Phadnis"}}},
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://www.kajolphadnis.com/"},
       {"@type":"ListItem","position":2,"name":"Corporate Toolkit","item":"https://www.kajolphadnis.com/toolkit"},
@@ -107,8 +108,24 @@
 
 <section class="wrap">
   <div class="prose">
-    <p>I wrote a promotion case for myself every single time I went up in consulting — because promotions were never guaranteed, and "I've worked really hard" is not a case. What follows is the exact structure. <strong>Copy each box into a doc and fill it in.</strong> Keep it to one page if you can — a partner will skim it in ninety seconds, so make every line earn its place.</p>
+    <p>I wrote a promotion case for myself every single time I went up in consulting — because promotions were never guaranteed, and "I've worked really hard" is not a case. What follows is the exact structure, free. <strong>Copy each box into a doc and fill it in.</strong> Keep it to one page if you can — a partner will skim it in ninety seconds, so make every line earn its place.</p>
+    <p>If you'd rather not build the deck from scratch, the editable PowerPoint version is £9.99 — same method, already laid out.</p>
   </div>
+</section>
+
+<section class="wrap" id="buy">
+  <div class="buybox">
+    <div>
+      <h2>Get Your Consultant or Manager Promotion Template.</h2>
+      <p>Instant download. Editable in PowerPoint, Google Slides or Keynote. Get <strong>two options</strong> of a promotion template. Written for analysts and consultants going for Consultant or Manager promotion.</p>
+    </div>
+    <div class="bb-buy">
+      <span class="bb-price">£9.99<small>One-off · .pptx</small></span>
+      <a class="btn btn-marigold payhip-buy-button" id="buy-btn" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a>
+    </div>
+  </div>
+
+  <p style="margin-top:20px;color:#6b6b6b;font-size:.92rem">Plus a how-to-use slide with the four things I'd tell you before you fill any of it in.</p>
 </section>
 
 <section class="wrap"><div class="prose">
@@ -166,6 +183,7 @@
 
 </div></section>
 
+
 <section class="tinted"><div class="wrap">
   <h2>Taking it into your performance review</h2>
   <div class="prose" style="max-width:760px">
@@ -200,6 +218,17 @@
 </div></footer>
 <script>
 (function(){var t=document.querySelector('.nav-toggle');if(t)t.addEventListener('click',function(){var n=t.closest('nav');var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});var g=document.querySelector('.nav-group-btn');if(g)g.addEventListener('click',function(e){if(window.innerWidth<=820){e.preventDefault();var grp=g.closest('.nav-group');var o=grp.classList.toggle('open');g.setAttribute('aria-expanded',o);}});})();
+</script>
+<!-- Payhip overlay checkout. data-theme="none" leaves .btn styling alone, and the
+     button keeps a real href so it still works as a plain link if this fails to load. -->
+<script defer src="https://payhip.com/payhip.js"></script>
+<script>
+(function(){
+  var b=document.getElementById('buy-btn');
+  if(b)b.addEventListener('click',function(){
+    if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
+  });
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/consent.js"></script>
