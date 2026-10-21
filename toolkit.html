@@ -157,6 +157,7 @@
       <button class="btn btn-marigold" type="submit">Join the waitlist</button>
     </form>
     <div id="waitok" style="display:none;background:var(--teal);color:#fff;border-radius:14px;padding:14px 16px;font-weight:600;margin-top:14px">🎉 You're on the list — I'll be in touch when they launch.</div>
+    <div id="waiterr" role="alert" style="display:none;background:#8c2f2f;color:#fff;border-radius:14px;padding:14px 16px;font-weight:600;margin-top:14px"></div>
   </div>
 </div></section>
 
@@ -199,7 +200,41 @@
 })();
 </script>
 <script>
-(function(){var f=document.getElementById('waitform');if(f)f.addEventListener('submit',function(e){e.preventDefault();var email=(f.email_address&&f.email_address.value)||'';var fd=new FormData();fd.append('email_address',email);fd.append('fields[interest]','Templates waitlist');fd.append('fields[toolkit_interest]',(f.toolkit_interest&&f.toolkit_interest.value)||'');fd.append('fields[wishlist]',(f.wishlist&&f.wishlist.value)||'');fetch('https://app.kit.com/forms/9683459/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(function(){});document.getElementById('waitok').style.display='block';f.style.display='none';});})();
+(function(){
+  var f=document.getElementById('waitform');if(!f)return;
+  var ok=document.getElementById('waitok'),err=document.getElementById('waiterr');
+  var btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=(f.email_address&&f.email_address.value||'').trim();
+    if(!email||email.indexOf('@')<1){err.textContent='Please enter a valid email address.';err.style.display='block';return;}
+    var interest=(f.toolkit_interest&&f.toolkit_interest.value)||'Not specified';
+    var wishlist=(f.wishlist&&f.wishlist.value)||'';
+    err.style.display='none';btn.disabled=true;btn.textContent='Joining\u2026';
+
+    // Kit keeps the subscriber on the list; Web3Forms guarantees Kajol gets the email.
+    var fd=new FormData();
+    fd.append('email_address',email);
+    fd.append('fields[interest]','Templates waitlist');
+    fd.append('fields[toolkit_interest]',interest);
+    fd.append('fields[wishlist]',wishlist);
+    fetch('https://app.kit.com/forms/9677223/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(function(){});
+
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'77fa2887-eee8-4052-803f-0d567a5c2568',subject:'Toolkit waitlist signup \u2014 '+interest,from_name:'Toolkit waitlist',email:email,'Most keen on':interest,'Would love me to build':wishlist||'\u2014'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(!d||!d.success)throw new Error('rejected');
+      if(window.gtag)gtag('event','sign_up',{method:'toolkit_waitlist'});
+      ok.style.display='block';f.style.display='none';
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Join the waitlist';
+      err.innerHTML='Something went wrong \u2014 please email me directly at <a href="mailto:hello@kajolphadnis.com" style="color:inherit">hello@kajolphadnis.com</a> and I\'ll add you.';
+      err.style.display='block';
+    });
+  });
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>
