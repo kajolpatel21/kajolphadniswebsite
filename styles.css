@@ -530,6 +530,8 @@ section.wrap:has(+ section.next-step-wrap){padding-bottom:28px}
   font-size:.82rem;font-weight:600;color:var(--ink-soft);letter-spacing:.01em}
 .byline .sep{color:var(--line)}
 .byline .upd{color:var(--teal)}
+/* Byline above the eyebrow: sits at the very top, so it needs space below, not above. */
+.byline.byline-top{margin:0 0 14px}
 
 /* Diagnostic pages: crawlable list of the result playbooks */
 .typelist{list-style:none;margin:28px 0 0;padding:0;display:grid;
