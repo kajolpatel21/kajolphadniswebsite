@@ -49,7 +49,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=29">
+<link rel="stylesheet" href="styles.css?v=30">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -105,14 +105,25 @@
   <p class="eyebrow">Toolkit &amp; templates</p>
   <h1>The consulting &amp; corporate toolkit — <span class="hl">real templates you can run</span></h1>
   <p class="lead">CV frameworks, case structures, strategy templates and business diagnostics — the same consulting and corporate tools I use in live engagements, packaged so you can use them yourself. Built from a decade at Deloitte and running growth across 70+ US and UK brands in 13 Middle East markets.</p>
-  <p style="margin-top:24px"><a class="btn btn-marigold" href="#available">Browse the toolkit</a> <a class="btn btn-ghost" href="#waitlist">See what's coming →</a></p>
+  <p style="margin-top:24px"><a class="btn btn-marigold" href="#available">Browse the toolkit</a> <a class="btn btn-ghost" href="#buy">Buy the Promotion Case Template →</a></p>
 </header>
 
 <section class="wrap avail" id="available" style="padding-top:30px;padding-bottom:48px">
-  <div class="trk-h"><h2>Start free, today</h2><span class="trk-note">— both live now</span></div>
+  <div class="trk-h"><h2>Start free, today</h2><span class="trk-note">— both free, live now</span></div>
   <div class="cards">
     <div class="card"><div class="card-icon" style="background:var(--marigold-soft)" aria-hidden="true">🧭</div><h3>The Stuck Type Diagnostic</h3><p>Feeling stuck but can't name why? Find your stuck type in two minutes — and exactly what to do about it.</p><p style="margin-top:10px"><a href="/stuck-type-diagnostic">Take the quiz →</a></p></div>
     <div class="card"><div class="card-icon" style="background:var(--teal-soft)" aria-hidden="true">🚧</div><h3>The Promotion Blocker Diagnostic</h3><p>Pinpoint the one thing standing between you and your next level — with a plan to clear it.</p><p style="margin-top:10px"><a href="/promotion-blocker-diagnostic">Take the quiz →</a></p></div>
+  </div>
+</section>
+
+<section class="wrap avail" id="buy" style="padding-top:0;padding-bottom:48px">
+  <div class="trk-h"><h2>Templates you can buy</h2><span class="trk-note">— available now</span></div>
+  <div class="cards" style="margin-top:14px">
+    <div class="card"><div class="card-icon" style="background:var(--plum-soft)" aria-hidden="true">🏆</div>
+      <h3>The Promotion Case Template</h3>
+      <p>The business case that gets you promoted, as an editable PowerPoint — twelve slides and <strong>two complete formats</strong> so you can pick the one that fits how your firm actually runs promotions. For analysts and consultants going for Consultant or Manager.</p>
+      <p style="margin-top:12px"><strong style="font-size:1.3rem">£9.99</strong> &nbsp;<a href="/promotion-case-template#buy">See what's inside →</a></p>
+    </div>
   </div>
 </section>
 
@@ -128,7 +139,7 @@
 
   </div>
   <h3 style="margin-top:38px;font-size:1.15rem">For managers &amp; senior managers</h3>
-  <div class="cards soon-grid" style="margin-top:14px"><div class="card"><div class="card-icon" style="background:var(--plum-soft)" aria-hidden="true">🏆</div><h3>Promotion Case Template</h3><p>The business case that gets you promoted — the full framework, filled-in examples and the editable PowerPoint slide version.</p><span class="pill-soon">Coming soon</span></div><div class="card"><div class="card-icon" style="background:var(--teal-soft)" aria-hidden="true">✨</div><h3>Personal Brand &amp; Visibility toolkit</h3><p>Get known and get seen — LinkedIn, eminence and the moves that put your work in front of the people who decide.</p><span class="pill-soon">Coming soon</span></div>
+  <div class="cards soon-grid" style="margin-top:14px"><div class="card"><div class="card-icon" style="background:var(--teal-soft)" aria-hidden="true">✨</div><h3>Personal Brand &amp; Visibility toolkit</h3><p>Get known and get seen — LinkedIn, eminence and the moves that put your work in front of the people who decide.</p><span class="pill-soon">Coming soon</span></div>
     <div class="card"><div class="card-icon" style="background:var(--plum-soft)" aria-hidden="true">🎤</div><h3>Executive Presence &amp; Influencing toolkit</h3><p>Stakeholder strategy, board-ready comms and the moves that get your ideas backed at the top table.</p><span class="pill-soon">Coming soon</span></div>
     <div class="card"><div class="card-icon" style="background:var(--marigold-soft)" aria-hidden="true">🤝</div><h3>Leadership &amp; Team toolkit</h3><p>Managing, developing and getting the best from a team — feedback, delegation and your first 90 days leading.</p><span class="pill-soon">Coming soon</span></div>
 
@@ -143,7 +154,6 @@
     <form id="waitform" novalidate style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
       <select name="toolkit_interest" style="flex:1 1 100%;min-width:220px;padding:13px 16px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--ink)">
         <option value="">Which toolkit are you most keen on?</option>
-        <option>Promotion Case Template</option>
         <option>Personal Brand &amp; Visibility</option>
         <option>Growth Strategy</option>
         <option>Strategy</option>
@@ -157,6 +167,7 @@
       <button class="btn btn-marigold" type="submit">Join the waitlist</button>
     </form>
     <div id="waitok" style="display:none;background:var(--teal);color:#fff;border-radius:14px;padding:14px 16px;font-weight:600;margin-top:14px">🎉 You're on the list — I'll be in touch when they launch.</div>
+    <div id="waiterr" role="alert" style="display:none;background:#8c2f2f;color:#fff;border-radius:14px;padding:14px 16px;font-weight:600;margin-top:14px"></div>
   </div>
 </div></section>
 
@@ -199,7 +210,41 @@
 })();
 </script>
 <script>
-(function(){var f=document.getElementById('waitform');if(f)f.addEventListener('submit',function(e){e.preventDefault();var email=(f.email_address&&f.email_address.value)||'';var fd=new FormData();fd.append('email_address',email);fd.append('fields[interest]','Templates waitlist');fd.append('fields[toolkit_interest]',(f.toolkit_interest&&f.toolkit_interest.value)||'');fd.append('fields[wishlist]',(f.wishlist&&f.wishlist.value)||'');fetch('https://app.kit.com/forms/9683459/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(function(){});document.getElementById('waitok').style.display='block';f.style.display='none';});})();
+(function(){
+  var f=document.getElementById('waitform');if(!f)return;
+  var ok=document.getElementById('waitok'),err=document.getElementById('waiterr');
+  var btn=f.querySelector('button[type=submit]');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=(f.email_address&&f.email_address.value||'').trim();
+    if(!email||email.indexOf('@')<1){err.textContent='Please enter a valid email address.';err.style.display='block';return;}
+    var interest=(f.toolkit_interest&&f.toolkit_interest.value)||'Not specified';
+    var wishlist=(f.wishlist&&f.wishlist.value)||'';
+    err.style.display='none';btn.disabled=true;btn.textContent='Joining…';
+
+    // Kit keeps the subscriber on the list; Web3Forms guarantees Kajol gets the email.
+    var fd=new FormData();
+    fd.append('email_address',email);
+    fd.append('fields[interest]','Templates waitlist');
+    fd.append('fields[toolkit_interest]',interest);
+    fd.append('fields[wishlist]',wishlist);
+    fetch('https://app.kit.com/forms/9677223/subscriptions',{method:'POST',headers:{'Accept':'application/json'},body:fd}).catch(function(){});
+
+    fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:'77fa2887-eee8-4052-803f-0d567a5c2568',subject:'Toolkit waitlist signup — '+interest,from_name:'Toolkit waitlist',email:email,'Most keen on':interest,'Would love me to build':wishlist||'—'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(!d||!d.success)throw new Error('rejected');
+      if(window.gtag)gtag('event','sign_up',{method:'toolkit_waitlist'});
+      ok.style.display='block';f.style.display='none';
+    }).catch(function(){
+      btn.disabled=false;btn.textContent='Join the waitlist';
+      err.innerHTML='Something went wrong — please email me directly at <a href="mailto:hello@kajolphadnis.com" style="color:inherit">hello@kajolphadnis.com</a> and I\'ll add you.';
+      err.style.display='block';
+    });
+  });
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>
