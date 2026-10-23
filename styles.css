@@ -574,4 +574,8 @@ section#buy{padding-top:28px;padding-bottom:0}
 .pnudge p{margin:0;font-size:.9rem;color:var(--ink-soft);line-height:1.55}
 .pnudge .pn-cta{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
 .pnudge .pn-price{font-weight:800;font-size:1.15rem;font-variant-numeric:tabular-nums}
+/* Inside article prose: follow the text column, not the centred page */
+.prose .pnudge{max-width:none;margin:30px 0 0}
+/* Article next-step box: align with the prose column instead of centring under it */
+section.next-step-wrap .next-step{max-width:68ch;margin:0}
 @media(max-width:620px){.pnudge{padding:18px}.pnudge .pn-cta{width:100%;justify-content:space-between}}
