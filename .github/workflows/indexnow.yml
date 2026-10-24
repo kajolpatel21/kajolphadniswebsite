@@ -59,7 +59,8 @@ jobs:
               echo "No HTML changed in this push."
             fi
             for f in "${changed[@]:-}"; do
-              [ -n "$f" ] && urls+=("$(html_to_url "$f")")
+              # 404.html is the not-found page, not a URL anyone should crawl.
+              [ -n "$f" ] && [ "$f" != "404.html" ] && urls+=("$(html_to_url "$f")")
             done
           fi
 
