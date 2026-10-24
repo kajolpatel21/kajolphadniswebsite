@@ -2,6 +2,75 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/11-coaching", "destination": "/career-coaching", "permanent": true }
+    {
+      "source": "/11-coaching",
+      "destination": "/career-coaching",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/post/:path*",
+      "destination": "/insights",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/business-toolkit",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/business-toolkit/:path*",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/templates",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/toolkits",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/p/:path*",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/cart",
+      "destination": "/toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/career-academy",
+      "destination": "/career-coaching",
+      "permanent": true
+    },
+    {
+      "source": "/career-academy-analyst-to-manager",
+      "destination": "/career-coaching",
+      "permanent": true
+    },
+    {
+      "source": "/copy-of-about-us",
+      "destination": "/about",
+      "permanent": true
+    }
   ]
 }
