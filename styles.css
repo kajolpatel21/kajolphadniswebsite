@@ -581,3 +581,17 @@ section#buy{padding-top:28px;padding-bottom:0}
 /* Article next-step box: align with the prose column instead of centring under it */
 section.next-step-wrap .next-step{max-width:68ch;margin:0}
 @media(max-width:620px){.pnudge{padding:18px}.pnudge .pn-cta{width:100%;justify-content:space-between}}
+
+/* Product imagery for the Promotion Case Template */
+.buybox.has-img{grid-template-columns:150px 1fr auto}
+.bb-img{width:150px;height:150px;border-radius:12px;display:block;box-shadow:0 6px 18px rgba(46,20,90,.22)}
+.pn-thumb{flex:none;display:block;line-height:0}
+.pn-thumb img{width:76px;height:76px;border-radius:10px;display:block;box-shadow:0 4px 12px rgba(46,20,90,.2)}
+.card-img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;margin-bottom:16px}
+.cards .card.card-product{display:grid;grid-template-columns:minmax(240px,380px) 1fr;gap:28px;align-items:center}
+.card-product .card-img{margin-bottom:0}
+@media(max-width:640px){
+  .buybox.has-img{grid-template-columns:1fr}
+  .bb-img{width:100%;height:auto;max-width:220px}
+  .cards .card.card-product{grid-template-columns:1fr;gap:16px}
+}
