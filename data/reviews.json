@@ -1,4 +1,11 @@
 {
   "_how": "Real reviews only. Add one, then run: python3 scripts/build_reviews.py  (writes them into the HTML, the Product schema and llms.txt). Fields: name, rating (1-5), text, date (YYYY-MM-DD); optional role, verified (true once matched to a Payhip order).",
-  "promotion-case-template": []
+  "promotion-case-template": [
+    {
+      "name": "Rosalie",
+      "rating": 5,
+      "date": "2026-10-25",
+      "text": "Super useful - used it to do my case and my manager loved it! Helped me get promoted by structuring my thoughts like this!!!"
+    }
+  ]
 }
