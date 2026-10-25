@@ -76,6 +76,11 @@
       "source": "/promotioncasetemplatepdp",
       "destination": "/toolkit#pdp-promotion-case-template",
       "permanent": false
+    },
+    {
+      "source": "/promotion-case-template-analysts-consultants",
+      "destination": "/toolkit#pdp-promotion-case-template",
+      "permanent": false
     }
   ]
 }
