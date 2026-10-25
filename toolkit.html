@@ -49,7 +49,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=37">
+<link rel="stylesheet" href="styles.css?v=38">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -163,7 +163,11 @@
         <div><dt>Delivery</dt><dd>Instant download after checkout</dd></div>
         <div><dt>Guarantee</dt><dd>Full refund within 14 days if it doesn't meet your expectations. Email <a href="mailto:hello@kajolphadnis.com">hello@kajolphadnis.com</a></dd></div>
       </dl>
-      <div class="pdp-reviews" data-reviews="promotion-case-template"></div>
+      <div class="pdp-reviews" data-reviews="promotion-case-template"><!-- reviews:start -->
+<h3 class="rv-h">Customer reviews</h3>
+<p class="rv-empty">No reviews yet. If you've used it, I'd love to hear how it went, and your review will help the next person decide.</p>
+<div class="rv-form-slot" id="write-review"></div>
+<!-- reviews:end --></div>
     </div>
   </div>
 </div>
@@ -317,7 +321,7 @@ document.querySelectorAll('[data-mq]').forEach(function(b){
 <script defer src="/consent.js"></script>
 <!-- Payhip overlay checkout; the button keeps a real href if this fails to load. -->
 <script defer src="https://payhip.com/payhip.js"></script>
-<script defer src="/reviews.js?v=1"></script>
+<script defer src="/reviews.js?v=2"></script>
 <script>
 (function(){
   var current=null, opener=null;
