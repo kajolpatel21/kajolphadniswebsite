@@ -5,8 +5,7 @@
    This file only adds the form into each .rv-form-slot.
 
    Kept as short as possible: tap a star, then one box and a name. Quick-pick
-   chips start the sentence for people, and a live preview shows the review as
-   it will appear. A link to /promotion-case-template?rating=5#write-review
+   chips start the sentence for people. A link to /promotion-case-template?rating=5#write-review
    (e.g. from a buyer email) arrives with that rating already picked and the
    form open. */
 (function(){
@@ -16,8 +15,6 @@
   var CHIPS = ['Got promoted', 'Built my case', 'Nailed my review', 'Asked for a raise', 'Felt more confident'];
   var GOOD_LEN = 60;
   var preset = (location.search.match(/[?&]rating=([1-5])\b/)||[])[1];
-
-  function stars(n){ return '★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(0,5-n); }
 
   function build(slot, key, uid){
     var name = NAMES[key]||key;
@@ -35,9 +32,6 @@
       '<textarea id="'+uid+'-txt" name="review" rows="3" placeholder="e.g. Used the summary format for my Manager case and got promoted"></textarea>'+
       '<span class="rv-count">A sentence or two is perfect</span></div>'+
       '<label class="rv-f rv-check">Your name, as you\'d like it shown<input name="name" autocomplete="name" placeholder="e.g. Priya S., Consultant"></label>'+
-      '<div class="rv-preview" aria-hidden="true"><span class="rv-preview-k">Preview</span>'+
-      '<div class="rv-item"><div class="rv-top"><span class="rv-stars"></span></div>'+
-      '<p class="rv-text"></p><p class="rv-by"></p></div></div>'+
       '<input type="checkbox" name="botcheck" class="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">'+
       '<button class="btn btn-marigold rv-submit" type="submit">Post review</button>'+
       '<p class="rv-note">By posting, you\'re happy for your review and name to appear on this site.</p>'+
@@ -45,8 +39,6 @@
 
     var f=slot.querySelector('form'), more=f.querySelector('.rv-more'), msg=f.querySelector('.rv-msg');
     var mood=f.querySelector('.rv-mood'), count=f.querySelector('.rv-count'), btn=f.querySelector('.rv-submit');
-    var pv=f.querySelector('.rv-preview'), pvStars=pv.querySelector('.rv-stars'),
-        pvText=pv.querySelector('.rv-text'), pvBy=pv.querySelector('.rv-by');
     var chips=f.querySelectorAll('.rv-chip');
 
     function rating(){ return +((f.querySelector('input[name=rating]:checked')||{}).value||0); }
@@ -62,11 +54,6 @@
       f.name.parentNode.classList.toggle('done', !!nm);
       var low=text.toLowerCase();
       for(var i=0;i<chips.length;i++) chips[i].setAttribute('aria-pressed', low.indexOf(chips[i].textContent.toLowerCase())>-1);
-      pvStars.textContent=stars(r);
-      pvText.textContent=text||'Your review will show here.';
-      pvText.classList.toggle('rv-ghost', !text);
-      pvBy.textContent=(nm||'Your name')+' · just now';
-      pv.classList.toggle('on', !!(text||nm));
       if(!btn.disabled) btn.textContent = r ? 'Post my '+r+'★ review' : 'Post review';
       btn.classList.toggle('ready', !!(r && len>=5 && nm));
     }
