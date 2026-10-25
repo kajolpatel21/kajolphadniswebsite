@@ -1,0 +1,26 @@
+{
+  "_how": "Real testimonials only, quoted word for word. Add one, then run: python3 scripts/build_testimonials.py  (rebuilds the list on /reviews). topic: promotions | consulting | coaching. source (optional): e.g. LinkedIn recommendation | YouTube comment. source_url optional (link to the original). date optional (YYYY-MM-DD).",
+  "testimonials": [
+    {
+      "topic": "consulting",
+      "quote": "I have to say that she is one of the best people I have worked with and you won't find 2 people like her.",
+      "name": "Melissa Smith",
+      "role": "Customer Strategy Director",
+      "org": "Deloitte"
+    },
+    {
+      "topic": "consulting",
+      "quote": "Kajol has been a valuable & hard working Lead for CX Program Discovery. She's a joy to work with & adds capability, energy & enthusiasm to the team.",
+      "name": "Peter Levy",
+      "role": "Head of Global eCommerce",
+      "org": "Specsavers"
+    },
+    {
+      "topic": "consulting",
+      "quote": "Her work has been super useful and so great, I've asked her to do the same thing to another business vertical!",
+      "name": "Alex Alexander",
+      "role": "CPTO",
+      "org": "Adevinta"
+    }
+  ]
+}
