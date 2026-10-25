@@ -141,7 +141,7 @@ def main():
          "Yes. Every testimonial is quoted word for word, with any cuts marked …, and LinkedIn recommendations link to Kajol's LinkedIn profile where they were written. "
          "Template reviews come from buyers and are checked before they're published."),
         ("Where can I find more reviews of Kajol Phadnis?",
-         "On her LinkedIn profile (recommendations), in the comments on her YouTube channel, and on the Promotion Case Template page."),
+         "On Trustpilot (trustpilot.com/review/kajolphadnis.com), on her LinkedIn profile (recommendations), in the comments on her YouTube channel, and on the Promotion Case Template page."),
     ]
     if themes:
         faq[0] = (faq[0][0], summary + f' One manager put it this way: “{f["quote"]}”' if f else summary)
