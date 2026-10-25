@@ -18,7 +18,6 @@
   var preset = (location.search.match(/[?&]rating=([1-5])\b/)||[])[1];
 
   function stars(n){ return '★★★★★'.slice(0,n)+'☆☆☆☆☆'.slice(0,5-n); }
-  function validEmail(em){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em); }
 
   function build(slot, key, uid){
     var name = NAMES[key]||key;
@@ -36,9 +35,8 @@
       '<textarea id="'+uid+'-txt" name="review" rows="3" placeholder="e.g. Used the summary format for my Manager case and got promoted"></textarea>'+
       '<span class="rv-count">A sentence or two is perfect</span></div>'+
       '<label class="rv-f rv-check">Your name, as you\'d like it shown<input name="name" autocomplete="name" placeholder="e.g. Priya S., Consultant"></label>'+
-      '<label class="rv-f rv-check">Email <span class="rv-opt">optional, kept private, gets you a "Verified buyer" badge</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com"></label>'+
       '<div class="rv-preview" aria-hidden="true"><span class="rv-preview-k">Preview</span>'+
-      '<div class="rv-item"><div class="rv-top"><span class="rv-stars"></span><span class="rv-ver" hidden>Verified buyer</span></div>'+
+      '<div class="rv-item"><div class="rv-top"><span class="rv-stars"></span></div>'+
       '<p class="rv-text"></p><p class="rv-by"></p></div></div>'+
       '<input type="checkbox" name="botcheck" class="rv-hp" tabindex="-1" autocomplete="off" aria-hidden="true">'+
       '<button class="btn btn-marigold rv-submit" type="submit">Post review</button>'+
@@ -47,7 +45,7 @@
 
     var f=slot.querySelector('form'), more=f.querySelector('.rv-more'), msg=f.querySelector('.rv-msg');
     var mood=f.querySelector('.rv-mood'), count=f.querySelector('.rv-count'), btn=f.querySelector('.rv-submit');
-    var pv=f.querySelector('.rv-preview'), pvStars=pv.querySelector('.rv-stars'), pvVer=pv.querySelector('.rv-ver'),
+    var pv=f.querySelector('.rv-preview'), pvStars=pv.querySelector('.rv-stars'),
         pvText=pv.querySelector('.rv-text'), pvBy=pv.querySelector('.rv-by');
     var chips=f.querySelectorAll('.rv-chip');
 
@@ -56,17 +54,15 @@
     function sentences(v){ return v.split(/[.!]\s*/).map(function(s){ return s.trim(); }).filter(Boolean); }
 
     function refresh(){
-      var r=rating(), text=f.review.value.trim(), nm=f.name.value.trim(), em=f.email.value.trim();
+      var r=rating(), text=f.review.value.trim(), nm=f.name.value.trim();
       showMood(r);
       var len=text.length;
       count.textContent = !len ? 'A sentence or two is perfect' : len<GOOD_LEN ? 'Keep going, a bit more detail helps' : 'Perfect, that\'s really helpful';
       count.className='rv-count'+(len>=GOOD_LEN?' good':'');
       f.name.parentNode.classList.toggle('done', !!nm);
-      f.email.parentNode.classList.toggle('done', validEmail(em));
       var low=text.toLowerCase();
       for(var i=0;i<chips.length;i++) chips[i].setAttribute('aria-pressed', low.indexOf(chips[i].textContent.toLowerCase())>-1);
       pvStars.textContent=stars(r);
-      pvVer.hidden=!validEmail(em);
       pvText.textContent=text||'Your review will show here.';
       pvText.classList.toggle('rv-ghost', !text);
       pvBy.textContent=(nm||'Your name')+' · just now';
@@ -107,17 +103,15 @@
     f.addEventListener('submit',function(e){
       e.preventDefault();
       var rating=(f.querySelector('input[name=rating]:checked')||{}).value;
-      var text=f.review.value.trim(), nm=f.name.value.trim(), em=f.email.value.trim();
+      var text=f.review.value.trim(), nm=f.name.value.trim();
       var err = !rating ? 'Tap a star first.' :
                 text.length<5 ? 'Add a few words about how it went.' :
-                !nm ? 'Add the name you\'d like shown.' :
-                (em && em.indexOf('@')<1) ? 'That email doesn\'t look right (or leave it blank).' : '';
+                !nm ? 'Add the name you\'d like shown.' : '';
       if(err){ msg.className='rv-msg rv-bad'; msg.textContent=err; replay(f,'rv-shake'); return; }
       if(f.botcheck.checked) return;
       btn.disabled=true; btn.textContent='Posting…'; msg.textContent='';
       var body={access_key:WEB3FORMS_KEY, subject:'New review ('+rating+'★): '+name, from_name:'Website reviews',
-        Product:name, Rating:rating+' / 5', Review:text, 'Show as':nm, 'Buyer email':em||'not given', Page:location.pathname};
-      if(em) body.email=em;
+        Product:name, Rating:rating+' / 5', Review:text, 'Show as':nm, Page:location.pathname};
       fetch('https://api.web3forms.com/submit',{
         method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(body)
       }).then(function(r){return r.json();}).then(function(d){
