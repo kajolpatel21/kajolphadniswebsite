@@ -3,8 +3,7 @@
 into reviews.html as plain HTML.
 
 Everything is real text in the page source, so Google and AI crawlers (most of
-which don't run JavaScript) can read and quote it: the stats strip, the
-featured quote, the "what people say most" themes and their summary, every
+which don't run JavaScript) can read and quote it: the featured quote, the "what people say most" themes and their summary, every
 testimonial, the template reviews and the FAQ (with FAQPage schema).
 JavaScript on the page only adds the topic filter and "read more" toggles.
 
@@ -82,22 +81,6 @@ def main():
         assert all(n in names for n in th["names"]), th
 
     out = []
-    # Stats strip — every number is counted from the data, never typed in.
-    n_li = sum(1 for t in items if t.get("source") == "LinkedIn recommendation")
-    n_client = sum(1 for t in items if t.get("source") == "Client testimonial")
-    stats = []
-    if n_li:
-        stats.append((str(n_li), f'LinkedIn recommendation{"s" if n_li > 1 else ""}', "from Deloitte managers and colleagues"))
-    if n_client:
-        stats.append((str(n_client), f'client testimonial{"s" if n_client > 1 else ""}', "Specsavers, Adevinta"))
-    if reviews:
-        avg = sum(r["rating"] for r in reviews) / len(reviews)
-        stats.append((f"{avg:.1f}★", "Promotion Case Template", f'from {len(reviews)} buyer review{"s" if len(reviews) > 1 else ""}'))
-    stats.append(("17,000+", "YouTube community", "career advice for consulting and corporate"))
-    out.append('<div class="tm-stats">' + "".join(
-        f'<div class="tm-stat"><span class="tm-num" data-n="{a(n)}">{n}</span><span class="tm-lab">{l}</span><span class="tm-sm">{s}</span></div>'
-        for n, l, s in stats) + "</div>")
-
     f = data.get("featured")
     if f:
         t = names[f["name"]]
