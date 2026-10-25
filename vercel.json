@@ -71,6 +71,11 @@
       "source": "/copy-of-about-us",
       "destination": "/about",
       "permanent": true
+    },
+    {
+      "source": "/promotioncasetemplatepdp",
+      "destination": "/toolkit#pdp-promotion-case-template",
+      "permanent": false
     }
   ]
 }
