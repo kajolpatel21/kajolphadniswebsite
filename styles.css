@@ -649,27 +649,26 @@ body.pdp-lock{overflow:hidden}
 .rv-ver{font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--teal);background:var(--teal-soft);padding:3px 9px;border-radius:100px}
 .rv-text{margin:8px 0 6px;font-size:.95rem}
 .rv-by{margin:0;font-size:.82rem;color:var(--ink-soft)}
-.rv-write>summary{list-style:none;display:inline-block;cursor:pointer}
-.rv-write>summary::-webkit-details-marker{display:none}
-.rv-write[open]>summary{margin-bottom:14px}
 .rv-form{display:grid;gap:12px;max-width:560px}
 .rv-f{display:grid;gap:5px;font-size:.85rem;font-weight:600;color:var(--ink)}
 .rv-f input,.rv-f textarea{font:inherit;font-weight:400;font-size:.95rem;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
 .rv-f input:focus,.rv-f textarea:focus{outline:none;border-color:var(--marigold)}
-.rv-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .rv-rate{border:none;margin:0;padding:0}
-.rv-rate legend{font-size:.85rem;font-weight:600;margin-bottom:4px;padding:0}
+.rv-rate legend{font-size:.95rem;font-weight:700;margin-bottom:4px;padding:0}
 .rv-stars-in{display:inline-flex;flex-direction:row-reverse;gap:2px}
 .rv-rate input{position:absolute;opacity:0;width:1px;height:1px}
-.rv-rate label{font-size:1.9rem;line-height:1;color:var(--line);cursor:pointer;padding:0 2px}
+.rv-rate label{font-size:2.1rem;line-height:1;color:#d6cbb8;cursor:pointer;padding:0 2px}
 .rv-rate input:checked~label,.rv-rate label:hover,.rv-rate label:hover~label{color:var(--marigold)}
 .rv-rate input:focus-visible+label{outline:2px solid var(--marigold);border-radius:4px}
-.rv-ok{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft)}
-.rv-ok input{margin-top:3px}
 .rv-hp{position:absolute;left:-9999px}
+.rv-more{display:grid;gap:12px}
+.rv-more[hidden]{display:none}
+.rv-opt{font-weight:400;color:var(--ink-soft)}
+.rv-note{margin:0;font-size:.8rem;color:var(--ink-soft)}
+.rv-form .btn{justify-self:start}
+blockquote.rv-text{margin:8px 0 6px;padding:0;border:none;font-style:normal}
 .rv-msg{margin:0;font-size:.88rem;font-weight:600}
 .rv-msg:empty{display:none}
 .rv-bad{color:#8c2f2f}
 .rv-good{color:var(--teal)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media (max-width:560px){.rv-row{grid-template-columns:1fr}}

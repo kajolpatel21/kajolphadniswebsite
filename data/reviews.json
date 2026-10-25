@@ -1,0 +1,4 @@
+{
+  "_how": "Real reviews only. Add one, then run: python3 scripts/build_reviews.py  (writes them into the HTML, the Product schema and llms.txt). Fields: name, rating (1-5), text, date (YYYY-MM-DD); optional role, verified (true once matched to a Payhip order).",
+  "promotion-case-template": []
+}
