@@ -135,7 +135,7 @@
 
 <!-- Product pop-ups (PDPs). Marked up in the page rather than built in JS so Payhip's
      script finds the buy button on load. Open with a [data-pdp] card or #pdp-... in the URL. -->
-<div class="pdp" id="pdp-promotion-case-template" role="dialog" aria-modal="true" aria-labelledby="pdp-pct-h" hidden>
+<div class="pdp" id="pdp-promotion-case-template" data-path="/promotion-case-template-analysts-consultants" role="dialog" aria-modal="true" aria-labelledby="pdp-pct-h" hidden>
   <div class="pdp-panel">
     <button type="button" class="pdp-close" aria-label="Close">×</button>
     <div class="pdp-top">
@@ -338,7 +338,9 @@ document.querySelectorAll('[data-mq]').forEach(function(b){
     current=m; opener=from||null;
     m.hidden=false; document.body.classList.add('pdp-lock');
     m.querySelector('.pdp-close').focus();
-    if(push!==false) history.pushState({pdp:id},'','#'+id);
+    // A product pop-up gets its own clean address (data-path); others use a #hash.
+    var path=m.getAttribute('data-path');
+    if(push!==false) history.pushState({pdp:id},'',path ? path+location.search : '#'+id);
     if(window.gtag && id!=='pdp-soon') gtag('event','view_item',{currency:'GBP',value:9.99,items:[{item_id:id.replace('pdp-',''),price:9.99}]});
   }
   function close(back){
@@ -346,8 +348,9 @@ document.querySelectorAll('[data-mq]').forEach(function(b){
     current.hidden=true; document.body.classList.remove('pdp-lock');
     current=null;
     if(opener) opener.focus({preventScroll:true});
-    // Opening pushed a history entry, so step back off it; otherwise just clear the hash.
-    if(back!==false){ if(history.state&&history.state.pdp) history.back(); else history.replaceState(null,'',location.pathname+location.search); }
+    // Opening pushed a history entry, so step back off it; if the visitor landed
+    // straight on the pop-up's address, swap it for the toolkit page's own.
+    if(back!==false){ if(history.state&&history.state.pdp) history.back(); else history.replaceState(null,'','/toolkit'+location.search); }
   }
 
   // Product cards: the whole card opens the pop-up, apart from its own buy button.
@@ -400,14 +403,26 @@ document.querySelectorAll('[data-mq]').forEach(function(b){
       else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}
     }
   });
-  // Back button closes the pop-up; a shared #pdp-... link opens it.
+  // Which pop-up the address points at: a clean product path, or an older #pdp-... link.
+  function fromLocation(){
+    var ms=document.querySelectorAll('.pdp[data-path]');
+    for(var k=0;k<ms.length;k++) if(location.pathname===ms[k].getAttribute('data-path')) return ms[k].id;
+    var h=location.hash.slice(1);
+    return (/^pdp-/.test(h) && h!=='pdp-soon') ? h : null;
+  }
+  // Back button closes the pop-up; forward or a shared link opens it.
   window.addEventListener('popstate',function(){
-    var id=location.hash.slice(1);
-    if(current && current.id!==id) close(false);
-    else if(!current && /^pdp-/.test(id) && id!=='pdp-soon') open(id,null,false);
+    var id=fromLocation();
+    if(current && current.id!==id && current.id!=='pdp-soon') close(false);
+    else if(current && current.id==='pdp-soon' && location.hash!=='#pdp-soon') close(false);
+    else if(!current && id) open(id,null,false);
   });
-  var start=location.hash.slice(1);
-  if(/^pdp-/.test(start) && start!=='pdp-soon') open(start,null,false);
+  var start=fromLocation();
+  if(start){
+    open(start,null,false);
+    var sp=document.getElementById(start).getAttribute('data-path');
+    if(sp && location.pathname!==sp) history.replaceState(null,'',sp+location.search); // tidy old #pdp- links
+  }
 
   // Buying: hand over to Payhip's checkout, which needs the pop-up out of the way.
   document.querySelectorAll('.js-buy').forEach(function(b){
