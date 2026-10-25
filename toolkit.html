@@ -49,7 +49,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=36">
+<link rel="stylesheet" href="styles.css?v=37">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -59,7 +59,8 @@
       {"@type":"ListItem","position":1,"name":"The Unwritten Rules of Consulting (guide)"},
       {"@type":"ListItem","position":2,"name":"Career & Strategy Templates — CV frameworks and case structures"},
       {"@type":"ListItem","position":3,"name":"The Stuck Type Diagnostic"},
-      {"@type":"ListItem","position":4,"name":"The Promotion Blocker Diagnostic"}
+      {"@type":"ListItem","position":4,"name":"The Promotion Blocker Diagnostic"},
+      {"@type":"ListItem","position":5,"name":"The Promotion Case Template","url":"https://www.kajolphadnis.com/promotion-case-template"}
     ]},
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Home","item":"https://www.kajolphadnis.com/"},
@@ -119,16 +120,67 @@
 <section class="wrap avail" id="buy" style="padding-top:0;padding-bottom:48px">
   <div class="trk-h"><h2>Templates you can buy</h2><span class="trk-note">— available now</span></div>
   <div class="cards" style="margin-top:14px">
-    <div class="card card-product"><a href="/promotion-case-template#buy" tabindex="-1" aria-hidden="true"><img class="card-img" src="/promotion-case-cover-800.webp" alt="" width="800" height="600" loading="lazy" decoding="async"></a>
+    <div class="card card-product" data-pdp="pdp-promotion-case-template"><img class="card-img" src="/promotion-case-cover-800.webp" alt="" width="800" height="600" loading="lazy" decoding="async">
       <div>
-      <h3>The Promotion Case Template</h3>
+      <h3><button type="button" class="pdp-open" aria-haspopup="dialog">The Promotion Case Template</button></h3>
       <p>The business case that gets you promoted, as an editable PowerPoint — twelve slides and <strong>two complete formats</strong> so you can pick the one that fits how your firm actually runs promotions. For analysts and consultants going for Consultant or Manager.</p>
-      <p style="margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px"><strong style="font-size:1.3rem">£9.99</strong><a class="btn btn-marigold payhip-buy-button" id="buy-btn" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a></p>
+      <p style="margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px"><strong style="font-size:1.3rem">£9.99</strong><a class="btn btn-marigold payhip-buy-button js-buy" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a></p>
       <p style="margin-top:10px;font-size:.92rem">Instant download · 14-day money-back guarantee</p>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Product pop-ups (PDPs). Marked up in the page rather than built in JS so Payhip's
+     script finds the buy button on load. Open with a [data-pdp] card or #pdp-... in the URL. -->
+<div class="pdp" id="pdp-promotion-case-template" role="dialog" aria-modal="true" aria-labelledby="pdp-pct-h" hidden>
+  <div class="pdp-panel">
+    <button type="button" class="pdp-close" aria-label="Close">×</button>
+    <div class="pdp-top">
+      <div class="pdp-media"><img src="/promotion-case-cover-800.webp" alt="The Promotion Case Template cover: THE PROMOTION CASE, editable PowerPoint, with sample slides" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pdp-info">
+        <p class="eyebrow">Corporate Toolkit · Template</p>
+        <h2 id="pdp-pct-h">The Promotion Case Template</h2>
+        <p class="pdp-for">For analysts and consultants going for Consultant or Manager</p>
+        <p class="pdp-price">£9.99 <small>One-off · instant download</small></p>
+        <a class="btn btn-marigold payhip-buy-button js-buy pdp-buy" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a>
+        <p class="pdp-assure">14-day money-back guarantee · Secure checkout by Payhip</p>
+      </div>
+    </div>
+    <div class="pdp-body">
+      <h3>About the template</h3>
+      <p>The business case that gets you promoted, as an editable PowerPoint. I wrote a promotion case every time I went up at Deloitte, because promotions were never guaranteed and "I've worked really hard" isn't a case. This is that structure, built so you fill it in rather than design it.</p>
+      <h3>What's inside</h3>
+      <ul class="pdp-list">
+        <li><strong>Twelve slides</strong>, with every placeholder written in brackets so you know exactly what goes where</li>
+        <li><strong>Two complete formats:</strong> a summary case for structured, criteria-led processes, and a narrative case for when you need to argue why now</li>
+        <li>Built around what panels look for: the criteria, your impact in numbers, and proof you already work a level up</li>
+      </ul>
+      <h3>Details</h3>
+      <dl class="pdp-specs">
+        <div><dt>Format</dt><dd>PowerPoint (.pptx)</dd></div>
+        <div><dt>Works in</dt><dd>PowerPoint, Google Slides, Keynote</dd></div>
+        <div><dt>Delivery</dt><dd>Instant download after checkout</dd></div>
+        <div><dt>Guarantee</dt><dd>Full refund within 14 days if it doesn't meet your expectations. Email <a href="mailto:hello@kajolphadnis.com">hello@kajolphadnis.com</a></dd></div>
+      </dl>
+      <div class="pdp-reviews" data-reviews="promotion-case-template"></div>
+    </div>
+  </div>
+</div>
+
+<!-- One shared pop-up for the coming-soon toolkits, filled from the card that opened it. -->
+<div class="pdp pdp-soon" id="pdp-soon" role="dialog" aria-modal="true" aria-labelledby="pdp-soon-h" hidden>
+  <div class="pdp-panel">
+    <button type="button" class="pdp-close" aria-label="Close">×</button>
+    <div class="pdp-soon-icon" aria-hidden="true"></div>
+    <p class="eyebrow pdp-soon-aud"></p>
+    <h2 id="pdp-soon-h"></h2>
+    <p class="pdp-soon-desc"></p>
+    <span class="pill-soon">Coming soon</span>
+    <p style="margin-top:18px">Join the waitlist and I'll email you the moment it launches, with a subscriber discount.</p>
+    <button type="button" class="btn btn-marigold pdp-soon-join" style="margin-top:14px">Join the waitlist for this</button>
+  </div>
+</div>
 
 <section class="tinted" id="waitlist"><div class="wrap">
   <div class="trk-h"><h2>Go deeper</h2><span class="trk-note">— join the waitlist</span></div>
@@ -163,6 +215,8 @@
         <option>Business Modelling</option>
         <option>Customer Experience</option>
         <option>PowerPoint template pack</option>
+        <option>Executive Presence &amp; Influencing</option>
+        <option>Leadership &amp; Team</option>
         <option>Not sure yet — send me everything</option>
       </select>
       <input type="text" name="wishlist" placeholder="What would you love me to build? (optional)" style="flex:1 1 100%;min-width:220px;padding:14px 16px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--ink)">
@@ -263,11 +317,95 @@ document.querySelectorAll('[data-mq]').forEach(function(b){
 <script defer src="/consent.js"></script>
 <!-- Payhip overlay checkout; the button keeps a real href if this fails to load. -->
 <script defer src="https://payhip.com/payhip.js"></script>
+<script defer src="/reviews.js?v=1"></script>
 <script>
 (function(){
-  var b=document.getElementById('buy-btn');
-  if(b)b.addEventListener('click',function(){
-    if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
+  var current=null, opener=null;
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+
+  function open(id, from, push){
+    var m=document.getElementById(id); if(!m) return;
+    if(current) close(false);
+    current=m; opener=from||null;
+    m.hidden=false; document.body.classList.add('pdp-lock');
+    m.querySelector('.pdp-close').focus();
+    if(push!==false) history.pushState({pdp:id},'','#'+id);
+    if(window.gtag && id!=='pdp-soon') gtag('event','view_item',{currency:'GBP',value:9.99,items:[{item_id:id.replace('pdp-',''),price:9.99}]});
+  }
+  function close(back){
+    if(!current) return;
+    current.hidden=true; document.body.classList.remove('pdp-lock');
+    current=null;
+    if(opener) opener.focus({preventScroll:true});
+    // Opening pushed a history entry, so step back off it; otherwise just clear the hash.
+    if(back!==false){ if(history.state&&history.state.pdp) history.back(); else history.replaceState(null,'',location.pathname+location.search); }
+  }
+
+  // Product cards: the whole card opens the pop-up, apart from its own buy button.
+  document.querySelectorAll('[data-pdp]').forEach(function(card){
+    card.addEventListener('click',function(e){
+      if(e.target.closest('.js-buy')) return;
+      open(card.getAttribute('data-pdp'), card.querySelector('.pdp-open'));
+    });
+  });
+
+  // Coming-soon cards share one pop-up, filled from the card's own content.
+  var soon=document.getElementById('pdp-soon'), soonInterest='';
+  document.querySelectorAll('.soon-grid .card').forEach(function(card){
+    var h=card.querySelector('h3');
+    h.innerHTML='<button type="button" class="pdp-open" aria-haspopup="dialog">'+h.innerHTML+'</button>';
+    card.classList.add('card-clickable');
+    card.addEventListener('click',function(){
+      var title=h.textContent.trim();
+      soon.querySelector('.pdp-soon-icon').textContent=card.querySelector('.card-icon').textContent;
+      soon.querySelector('.pdp-soon-icon').style.background=card.querySelector('.card-icon').style.background;
+      soon.querySelector('#pdp-soon-h').textContent=title;
+      soon.querySelector('.pdp-soon-desc').textContent=card.querySelector('p').textContent;
+      var sub=card.closest('.soon-grid').previousElementSibling;
+      soon.querySelector('.pdp-soon-aud').textContent=sub&&sub.tagName==='H3'?sub.textContent:'';
+      soonInterest=title.replace(/ toolkit$/i,'');
+      open('pdp-soon', h.querySelector('button'));
+    });
+  });
+  soon.querySelector('.pdp-soon-join').addEventListener('click',function(){
+    close();
+    var sel=document.querySelector('#waitform select[name=toolkit_interest]');
+    for(var i=0;i<sel.options.length;i++) if(sel.options[i].text===soonInterest){ sel.selectedIndex=i; break; }
+    var band=document.querySelector('.wl-band');
+    band.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(function(){ document.querySelector('#waitform input[type=email]').focus({preventScroll:true}); },500);
+  });
+
+  document.querySelectorAll('.pdp').forEach(function(m){
+    m.querySelector('.pdp-close').addEventListener('click',function(){ close(); });
+    m.addEventListener('click',function(e){ if(e.target===m) close(); });
+  });
+  document.addEventListener('keydown',function(e){
+    if(!current) return;
+    if(e.key==='Escape') close();
+    if(e.key==='Tab'){ // keep focus inside the open pop-up
+      var f=current.querySelectorAll('a[href],button,input,textarea,select,summary');
+      f=Array.prototype.filter.call(f,function(el){return el.offsetParent!==null;});
+      if(!f.length) return;
+      if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus();}
+      else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}
+    }
+  });
+  // Back button closes the pop-up; a shared #pdp-... link opens it.
+  window.addEventListener('popstate',function(){
+    var id=location.hash.slice(1);
+    if(current && current.id!==id) close(false);
+    else if(!current && /^pdp-/.test(id) && id!=='pdp-soon') open(id,null,false);
+  });
+  var start=location.hash.slice(1);
+  if(/^pdp-/.test(start) && start!=='pdp-soon') open(start,null,false);
+
+  // Buying: hand over to Payhip's checkout, which needs the pop-up out of the way.
+  document.querySelectorAll('.js-buy').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
+      if(current) close();
+    });
   });
 })();
 </script>
