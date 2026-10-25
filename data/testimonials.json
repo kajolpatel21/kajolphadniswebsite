@@ -63,7 +63,8 @@
         "Andrew Moses",
         "Sundeep Khanna"
       ],
-      "evidence": "“a great natural ability for building relationships” – Andrew Moses"
+      "evidence": "“a great natural ability for building relationships” – Andrew Moses",
+      "icon": "🤝"
     },
     {
       "label": "Coaching and developing people",
@@ -71,7 +72,8 @@
         "Melissa Smith",
         "Andrew Moses"
       ],
-      "evidence": "“a great coach and mentor for those working in her teams” – Melissa Smith"
+      "evidence": "“a great coach and mentor for those working in her teams” – Melissa Smith",
+      "icon": "🌱"
     },
     {
       "label": "Consistent results",
@@ -80,7 +82,8 @@
         "Sundeep Khanna",
         "Alex Alexander"
       ],
-      "evidence": "“delivers great results consistently” – Melissa Smith"
+      "evidence": "“delivers great results consistently” – Melissa Smith",
+      "icon": "📈"
     },
     {
       "label": "Energy and enthusiasm",
@@ -89,14 +92,16 @@
         "Sundeep Khanna",
         "Melissa Smith"
       ],
-      "evidence": "“adds capability, energy & enthusiasm to the team” – Peter Levy"
+      "evidence": "“adds capability, energy & enthusiasm to the team” – Peter Levy",
+      "icon": "⚡"
     },
     {
       "label": "Creative problem solving",
       "names": [
         "Andrew Moses"
       ],
-      "evidence": "“We benefitted massively from her creativity and problem solving” – Andrew Moses"
+      "evidence": "“We benefitted massively from her creativity and problem solving” – Andrew Moses",
+      "icon": "💡"
     }
   ]
 }

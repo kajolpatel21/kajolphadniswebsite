@@ -3,8 +3,7 @@
 into reviews.html as plain HTML.
 
 Everything is real text in the page source, so Google and AI crawlers (most of
-which don't run JavaScript) can read and quote it: the stats strip, the
-featured quote, the "what people say most" themes and their summary, every
+which don't run JavaScript) can read and quote it: the featured quote, the "what people say most" themes and their summary, every
 testimonial, the template reviews and the FAQ (with FAQPage schema).
 JavaScript on the page only adds the topic filter and "read more" toggles.
 
@@ -62,7 +61,7 @@ def card(t, i):
     tag = " · ".join(x for x in (src, when) if x)
     cite = f' cite="{a(t["source_url"])}"' if t.get("source_url") else ""
     long = " tm-long" if len(t["quote"]) > 320 else ""
-    return (f'<figure class="tm-card{long}">'
+    return (f'<figure class="tm-card{long}" data-name="{a(t["name"])}">'
             f'<figcaption class="tm-who">{avatar(t, i)}<span><strong>{e(t["name"])}</strong>'
             f'<span class="tm-role">{meta}</span></span></figcaption>'
             f'<blockquote{cite}>“{quote_html(t)}”</blockquote>'
@@ -82,28 +81,17 @@ def main():
         assert all(n in names for n in th["names"]), th
 
     out = []
-    # Stats strip — every number is counted from the data, never typed in.
-    n_li = sum(1 for t in items if t.get("source") == "LinkedIn recommendation")
-    n_client = sum(1 for t in items if t.get("source") == "Client testimonial")
-    stats = []
-    if n_li:
-        stats.append((str(n_li), f'LinkedIn recommendation{"s" if n_li > 1 else ""}', "from Deloitte managers and colleagues"))
-    if n_client:
-        stats.append((str(n_client), f'client testimonial{"s" if n_client > 1 else ""}', "Specsavers, Adevinta"))
-    if reviews:
-        avg = sum(r["rating"] for r in reviews) / len(reviews)
-        stats.append((f"{avg:.1f}★", "Promotion Case Template", f'from {len(reviews)} buyer review{"s" if len(reviews) > 1 else ""}'))
-    stats.append(("17,000+", "YouTube community", "career advice for consulting and corporate"))
-    out.append('<div class="tm-stats">' + "".join(
-        f'<div class="tm-stat"><span class="tm-num">{n}</span><span class="tm-lab">{l}</span><span class="tm-sm">{s}</span></div>'
-        for n, l, s in stats) + "</div>")
-
     f = data.get("featured")
     if f:
         t = names[f["name"]]
         assert f["quote"] in t["quote"]
-        out.append(f'<figure class="tm-feature"><blockquote>“{e(f["quote"])}”</blockquote>'
-                   f'<figcaption><strong>{e(t["name"])}</strong> · {e(t.get("role", ""))}</figcaption></figure>')
+        # Spotlight: the featured line first, then each person's highlighted phrase.
+        # All slides are in the HTML; JS just rotates which one shows.
+        slides = [(f["quote"], t)] + [(x["highlight"], x) for x in items if x.get("highlight") and x["name"] != t["name"]]
+        out.append('<section class="tm-feature" aria-label="Highlights"><ul class="tm-spot">' + "".join(
+            '<li' + (' class="on"' if k == 0 else '') + f'><blockquote>“{e(q)}”</blockquote>'
+            f'<p class="tm-spot-by"><strong>{e(x["name"])}</strong> · {e(x.get("role") or x.get("org", ""))}</p></li>'
+            for k, (q, x) in enumerate(slides)) + '</ul><div class="tm-spot-dots" hidden></div></section>')
 
     if themes:
         ranked = sorted(themes, key=lambda th: -len(th["names"]))
@@ -112,15 +100,17 @@ def main():
                    f'{", ".join(labels[:-1])} and {labels[-1]}.')
         out.append('<section class="tm-themes" id="themes"><h2>What people say <span class="hl">most</span></h2>'
                    f'<p class="tm-summary">{e(summary)}</p><ul class="tm-theme-list">' + "".join(
-                       f'<li><span class="tm-theme-h">{e(th["label"])}</span>'
+                       f'<li><button type="button" class="tm-theme" data-names="{a("|".join(th["names"]))}" data-label="{a(th["label"])}">'
+                       f'<span class="tm-theme-i" aria-hidden="true">{th.get("icon", "")}</span><span class="tm-theme-h">{e(th["label"])}</span>'
                        f'<span class="tm-theme-n">Mentioned by {len(th["names"])}: {e(", ".join(th["names"]))}</span>'
-                       f'<span class="tm-theme-q">{e(th["evidence"])}</span></li>' for th in ranked) + "</ul></section>")
+                       f'<span class="tm-theme-q">{e(th["evidence"])}</span><span class="tm-theme-go">See these reviews →</span></button></li>' for th in ranked) + "</ul></section>")
 
     groups = [(k, t, s, [x for x in items if x["topic"] == k]) for k, t, s in TOPICS]
     groups = [g for g in groups if g[3]]
     tabs = [("all", "All")] + [(k, re.sub("&amp;", "&", t)) for k, t, _, _ in groups] + ([("template", "Template reviews")] if reviews else [])
     out.append('<div class="tm-filter" role="tablist" aria-label="Filter reviews" hidden>' + "".join(
-        f'<button type="button" role="tab" data-f="{k}" aria-selected="{"true" if k == "all" else "false"}">{e(l)}</button>' for k, l in tabs) + "</div>")
+        f'<button type="button" role="tab" data-f="{k}" aria-selected="{"true" if k == "all" else "false"}">{e(l)}</button>' for k, l in tabs) + "</div>"
+               '<p class="tm-theme-on" hidden aria-live="polite"><span></span> <button type="button" class="tm-clear">Show all reviews</button></p>')
     i = 0
     for key, title, sub, group in groups:
         cards = []
