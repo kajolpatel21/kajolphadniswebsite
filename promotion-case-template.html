@@ -49,7 +49,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=34">
+<link rel="stylesheet" href="styles.css?v=35">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -110,7 +110,25 @@
      "@type": "Person",
      "name": "Kajol Phadnis"
     },
-    "itemCondition": "https://schema.org/NewCondition"
+    "itemCondition": "https://schema.org/NewCondition",
+    "hasMerchantReturnPolicy": {
+     "@type": "MerchantReturnPolicy",
+     "applicableCountry": [
+      "GB",
+      "US",
+      "AE",
+      "SG",
+      "IE",
+      "AU",
+      "CA",
+      "IN"
+     ],
+     "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+     "merchantReturnDays": 14,
+     "refundType": "https://schema.org/FullRefund",
+     "returnFees": "https://schema.org/FreeReturn",
+     "merchantReturnLink": "https://www.kajolphadnis.com/promotion-case-template#refund-policy"
+    }
    },
    "@id": "https://www.kajolphadnis.com/promotion-case-template#product",
    "url": "https://www.kajolphadnis.com/promotion-case-template",
@@ -203,6 +221,14 @@
     },
     {
      "@type": "Question",
+     "name": "What if the template doesn't meet my expectations?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "You're covered by a 14-day money-back guarantee. If the template doesn't meet your expectations, email hello@kajolphadnis.com within 14 days of buying it and you'll get a full refund, no questions asked."
+     }
+    },
+    {
+     "@type": "Question",
      "name": "What's the difference between this page and the template?",
      "acceptedAnswer": {
       "@type": "Answer",
@@ -265,6 +291,7 @@
     <div class="bb-buy">
       <span class="bb-price">£9.99<small>One-off · .pptx</small></span>
       <a class="btn btn-marigold payhip-buy-button" id="buy-btn" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a>
+      <a class="bb-guarantee" href="#refund-policy">14-day money-back guarantee</a>
     </div>
   </div>
 </section>
@@ -346,6 +373,7 @@
     <details><summary>Who is the Promotion Case Template for?</summary><p>Analysts and consultants going for Consultant or Manager, in consulting or any firm that runs a criteria-based promotion process. It was written by Kajol Phadnis, an ex-Deloitte consultant who wrote a promotion case every time she went up.</p></details>
     <details><summary>What format is it, and what software do I need?</summary><p>A .pptx file. It's editable in PowerPoint, Google Slides or Keynote.</p></details>
     <details><summary>How much does it cost and how do I get it?</summary><p>£9.99, one-off. Buy it on this page and you get an instant download; checkout is handled by Payhip.</p></details>
+    <details id="refund-policy"><summary>What if the template doesn't meet my expectations?</summary><p>You're covered by a 14-day money-back guarantee. If the template doesn't meet your expectations, email <a href="mailto:hello@kajolphadnis.com">hello@kajolphadnis.com</a> within 14 days of buying it and you'll get a full refund, no questions asked.</p></details>
     <details><summary>What's the difference between this page and the template?</summary><p>The method on this page is free: the seven parts of a promotion case and how to use it in your review. The template is the same method already built as an editable deck, so you fill it in rather than design it.</p></details>
   </div>
 </div></section>
@@ -376,6 +404,10 @@
 <script defer src="https://payhip.com/payhip.js"></script>
 <script>
 (function(){
+  // The guarantee link points at a collapsed FAQ answer: open it on arrival.
+  function openRefund(){ var d=document.getElementById('refund-policy'); if(d) d.open=true; }
+  if(location.hash==='#refund-policy') openRefund();
+  window.addEventListener('hashchange',function(){ if(location.hash==='#refund-policy') openRefund(); });
   var b=document.getElementById('buy-btn');
   if(b)b.addEventListener('click',function(){
     if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
