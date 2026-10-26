@@ -98,7 +98,9 @@
       if(f.botcheck.checked) return;
       btn.disabled=true; btn.textContent='Posting…'; msg.textContent='';
       var body={access_key:WEB3FORMS_KEY, subject:'New review ('+rating+'★): '+name, from_name:'Website reviews',
-        Product:name, Rating:rating+' / 5', Review:text, 'Show as':nm, Page:location.pathname};
+        Product:name, Rating:rating+' / 5', Review:text, 'Show as':nm,
+        'Quick picks':Array.prototype.filter.call(chips,function(c){return c.getAttribute('aria-pressed')==='true';}).map(function(c){return c.textContent;}).join(', ')||'none chosen',
+        Page:location.pathname};
       fetch('https://api.web3forms.com/submit',{
         method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(body)
       }).then(function(r){return r.json();}).then(function(d){
