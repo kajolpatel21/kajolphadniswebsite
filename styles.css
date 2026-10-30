@@ -600,7 +600,11 @@ section.next-step-wrap .next-step{max-width:68ch;margin:0}
 .card-product,.card-clickable{cursor:pointer}
 .pdp-open{all:unset;cursor:pointer;font:inherit;color:inherit}
 .pdp-open:focus-visible{outline:2px solid var(--marigold);outline-offset:3px;border-radius:4px}
-.card-product:hover .pdp-open,.card-clickable:hover .pdp-open{text-decoration:underline;text-decoration-color:var(--marigold);text-underline-offset:4px}
+.buybox[data-pdp]{cursor:pointer}
+.buybox[data-pdp] .bb-buy{cursor:auto}
+.pdp-reviews-link{margin:22px 0 0;font-weight:700}
+.pdp-reviews-link a{color:var(--ink);text-decoration-color:var(--marigold);text-underline-offset:3px}
+.card-product:hover .pdp-open,.card-clickable:hover .pdp-open,.buybox[data-pdp]:hover .pdp-open{text-decoration:underline;text-decoration-color:var(--marigold);text-underline-offset:4px}
 body.pdp-lock{overflow:hidden}
 .pdp{position:fixed;inset:0;z-index:1000;background:rgba(28,22,34,.6);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;overscroll-behavior:contain}
 .pdp[hidden]{display:none}
