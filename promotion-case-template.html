@@ -342,10 +342,10 @@
 </section>
 
 <section class="wrap" id="buy">
-  <div class="buybox has-img">
+  <div class="buybox has-img" data-pdp="pdp-promotion-case-template">
     <img class="bb-img" src="/promotion-case-cover-320.webp" alt="The Promotion Case Template cover: THE PROMOTION CASE, editable PowerPoint, with sample slides" width="150" height="150" decoding="async">
     <div>
-      <h2>Get Your Template for Consultant / Manager Promotion</h2>
+      <h2><button type="button" class="pdp-open" aria-haspopup="dialog">Get Your Template for Consultant / Manager Promotion</button></h2>
       <p>Instant download. Editable in PowerPoint, Google Slides or Keynote. Get <strong>two options</strong> of a promotion template. Written for analysts and consultants going for Consultant or Manager promotion.</p>
     </div>
     <div class="bb-buy">
@@ -459,6 +459,44 @@
   <p style="color:#6b6b6b">Not sure what's actually blocking your promotion? Take the free <a href="/promotion-blocker-diagnostic">Promotion Blocker Diagnostic</a> first, then come back and build the case. More templates in the <a href="/toolkit">Corporate Toolkit &amp; Templates</a>.</p>
 </div></section>
 
+
+<!-- Product pop-up: same content as on /toolkit. Opened from the buy box or #pdp-promotion-case-template;
+     reviews stay in the page's own section below, which build_reviews.py keeps up to date. -->
+<div class="pdp" id="pdp-promotion-case-template" role="dialog" aria-modal="true" aria-labelledby="pdp-pct-h" hidden>
+  <div class="pdp-panel">
+    <button type="button" class="pdp-close" aria-label="Close">×</button>
+    <div class="pdp-top">
+      <div class="pdp-media"><img src="/promotion-case-cover-800.webp" alt="The Promotion Case Template cover: THE PROMOTION CASE, editable PowerPoint, with sample slides" width="800" height="600" loading="lazy" decoding="async"></div>
+      <div class="pdp-info">
+        <p class="eyebrow">Corporate Toolkit · Template</p>
+        <h2 id="pdp-pct-h">Promotion Case Template for Analysts / Consultants</h2>
+        <p class="pdp-for">Looking to get promoted to Consultant / Manager</p>
+        <p class="pdp-price">£9.99 <small>One-off · instant download</small></p>
+        <a class="btn btn-marigold payhip-buy-button js-buy pdp-buy" data-theme="none" data-product="q2Cyk" href="https://payhip.com/b/q2Cyk">Buy the template</a>
+        <p class="pdp-assure">14-day money-back guarantee · Secure checkout by Payhip</p>
+      </div>
+    </div>
+    <div class="pdp-body">
+      <h3>About the template</h3>
+      <p>The business case that gets you promoted, as an editable PowerPoint. I wrote a promotion case every time I went up at Deloitte, because promotions were never guaranteed and "I've worked really hard" isn't a case. This is that structure, built so you fill it in rather than design it.</p>
+      <h3>What's inside</h3>
+      <ul class="pdp-list">
+        <li><strong>Twelve slides</strong>, with every placeholder written in brackets so you know exactly what goes where</li>
+        <li><strong>Two complete formats:</strong> a summary case for structured, criteria-led processes, and a narrative case for when you need to argue why now</li>
+        <li>Built around what panels look for: the criteria, your impact in numbers, and proof you already work a level up</li>
+      </ul>
+      <h3>Details</h3>
+      <dl class="pdp-specs">
+        <div><dt>Format</dt><dd>PowerPoint (.pptx)</dd></div>
+        <div><dt>Works in</dt><dd>PowerPoint, Google Slides, Keynote</dd></div>
+        <div><dt>Delivery</dt><dd>Instant download after checkout</dd></div>
+        <div><dt>Guarantee</dt><dd>Full refund within 14 days if it doesn't meet your expectations. Email <a href="mailto:hello@kajolphadnis.com">hello@kajolphadnis.com</a></dd></div>
+      </dl>
+      <p class="pdp-reviews-link"><a href="#reviews" class="js-pdp-reviews">Read customer reviews ↓</a></p>
+    </div>
+  </div>
+</div>
+
 <footer><div class="wrap">
   <div class="foot-grid">
     <div class="foot-brand"><a class="logo" href="/">Kajol Phadnis</a><p>Strategy and growth consultant who stays to execute. Physicist turned consultant turned operator, between London and Dubai.</p></div>
@@ -483,6 +521,60 @@
   var b=document.getElementById('buy-btn');
   if(b)b.addEventListener('click',function(){
     if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
+  });
+})();
+</script>
+<script>
+(function(){
+  // Product pop-up on this page: the buy box (cover, title or empty space) opens it; its own
+  // Buy button and guarantee link still work directly. #pdp-promotion-case-template opens it on arrival.
+  var m=document.getElementById('pdp-promotion-case-template'), box=document.querySelector('[data-pdp]');
+  if(!m||!box) return;
+  var opener=null, isOpen=false;
+  function open(from,push){
+    if(isOpen) return; isOpen=true; opener=from||null;
+    m.hidden=false; document.body.classList.add('pdp-lock'); m.querySelector('.pdp-close').focus();
+    if(push!==false) history.pushState({pdp:1},'','#pdp-promotion-case-template');
+    if(window.gtag) gtag('event','view_item',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',price:9.99}]});
+  }
+  function close(back){
+    if(!isOpen) return; isOpen=false;
+    m.hidden=true; document.body.classList.remove('pdp-lock');
+    if(opener) opener.focus({preventScroll:true});
+    if(back!==false){ if(history.state&&history.state.pdp) history.back(); else history.replaceState(null,'',location.pathname+location.search); }
+  }
+  box.addEventListener('click',function(e){
+    if(e.target.closest('a')) return;
+    open(box.querySelector('.pdp-open'));
+  });
+  m.querySelector('.pdp-close').addEventListener('click',function(){ close(); });
+  m.addEventListener('click',function(e){ if(e.target===m) close(); });
+  document.addEventListener('keydown',function(e){
+    if(!isOpen) return;
+    if(e.key==='Escape') close();
+    if(e.key==='Tab'){ // keep focus inside the open pop-up
+      var f=Array.prototype.filter.call(m.querySelectorAll('a[href],button'),function(el){return el.offsetParent!==null;});
+      if(!f.length) return;
+      if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus();}
+      else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus();}
+    }
+  });
+  window.addEventListener('popstate',function(){
+    var want=location.hash==='#pdp-promotion-case-template';
+    if(isOpen&&!want) close(false); else if(!isOpen&&want) open(null,false);
+  });
+  if(location.hash==='#pdp-promotion-case-template') open(null,false);
+  // Reviews link: close, then scroll to the page's own reviews section.
+  var rl=m.querySelector('.js-pdp-reviews');
+  if(rl) rl.addEventListener('click',function(e){
+    e.preventDefault(); close(false); history.replaceState(null,'',location.pathname+location.search);
+    document.getElementById('reviews').scrollIntoView({behavior:'smooth'});
+  });
+  // Buying from the pop-up: track it, then get out of Payhip's way.
+  var pb=m.querySelector('.js-buy');
+  if(pb) pb.addEventListener('click',function(){
+    if(window.gtag)gtag('event','begin_checkout',{currency:'GBP',value:9.99,items:[{item_id:'promotion-case-template',item_name:'The Promotion Case Template',price:9.99,quantity:1}]});
+    close();
   });
 })();
 </script>
