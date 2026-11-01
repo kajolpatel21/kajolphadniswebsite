@@ -798,3 +798,14 @@ section.tm-group{margin-top:34px;padding:0}
 .tm-theme-list li{transition:opacity .45s ease,transform .45s ease}
 @media (prefers-reduced-motion:reduce){.tm-card,.tm-theme,.tm-spot li{transition:none}.tm-pre{opacity:1;transform:none}}
 @media (max-width:600px){.tm-feature{padding:28px 22px}}
+
+/* ---------- Promotion case example article ---------- */
+.ex-note{background:var(--marigold-soft);border-radius:14px;padding:14px 18px;font-size:.92rem}
+.ex-quote{margin:14px 0;padding:18px 22px;border-left:4px solid var(--marigold);background:var(--bg-soft);border-radius:0 14px 14px 0;font-size:1.08rem;font-weight:600;color:var(--ink)}
+.ex-table{overflow-x:auto;margin:14px 0}
+.ex-table table{width:100%;border-collapse:collapse;font-size:.93rem}
+.ex-table th,.ex-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.ex-table th{font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+.ex-fig{margin:24px 0}
+.ex-fig img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(44,35,51,.08)}
+.ex-fig figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:8px}
