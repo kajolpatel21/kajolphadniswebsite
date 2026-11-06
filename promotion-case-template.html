@@ -127,7 +127,65 @@
      "merchantReturnDays": 14,
      "refundType": "https://schema.org/FullRefund",
      "returnFees": "https://schema.org/FreeReturn",
-     "merchantReturnLink": "https://www.kajolphadnis.com/promotion-case-template#refund-policy"
+     "merchantReturnLink": "https://www.kajolphadnis.com/promotion-case-template#refund-policy",
+     "returnMethod": "https://schema.org/ReturnByMail"
+    },
+    "shippingDetails": {
+     "@type": "OfferShippingDetails",
+     "shippingRate": {
+      "@type": "MonetaryAmount",
+      "value": "0",
+      "currency": "GBP"
+     },
+     "shippingDestination": [
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "GB"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "US"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "AE"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "SG"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "IE"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "AU"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "CA"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "IN"
+      }
+     ],
+     "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": {
+       "@type": "QuantitativeValue",
+       "minValue": 0,
+       "maxValue": 0,
+       "unitCode": "DAY"
+      },
+      "transitTime": {
+       "@type": "QuantitativeValue",
+       "minValue": 0,
+       "maxValue": 0,
+       "unitCode": "DAY"
+      }
+     }
     }
    },
    "@id": "https://www.kajolphadnis.com/promotion-case-template#product",
@@ -135,7 +193,7 @@
    "sku": "q2Cyk",
    "productID": "payhip:q2Cyk",
    "audience": {
-    "@type": "Audience",
+    "@type": "PeopleAudience",
     "audienceType": "Analysts and consultants going for Consultant or Manager"
    },
    "additionalProperty": [
