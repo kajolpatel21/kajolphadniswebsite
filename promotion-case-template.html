@@ -127,7 +127,65 @@
      "merchantReturnDays": 14,
      "refundType": "https://schema.org/FullRefund",
      "returnFees": "https://schema.org/FreeReturn",
-     "merchantReturnLink": "https://www.kajolphadnis.com/promotion-case-template#refund-policy"
+     "merchantReturnLink": "https://www.kajolphadnis.com/promotion-case-template#refund-policy",
+     "returnMethod": "https://schema.org/ReturnByMail"
+    },
+    "shippingDetails": {
+     "@type": "OfferShippingDetails",
+     "shippingRate": {
+      "@type": "MonetaryAmount",
+      "value": "0",
+      "currency": "GBP"
+     },
+     "shippingDestination": [
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "GB"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "US"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "AE"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "SG"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "IE"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "AU"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "CA"
+      },
+      {
+       "@type": "DefinedRegion",
+       "addressCountry": "IN"
+      }
+     ],
+     "deliveryTime": {
+      "@type": "ShippingDeliveryTime",
+      "handlingTime": {
+       "@type": "QuantitativeValue",
+       "minValue": 0,
+       "maxValue": 0,
+       "unitCode": "DAY"
+      },
+      "transitTime": {
+       "@type": "QuantitativeValue",
+       "minValue": 0,
+       "maxValue": 0,
+       "unitCode": "DAY"
+      }
+     }
     }
    },
    "@id": "https://www.kajolphadnis.com/promotion-case-template#product",
@@ -135,7 +193,7 @@
    "sku": "q2Cyk",
    "productID": "payhip:q2Cyk",
    "audience": {
-    "@type": "Audience",
+    "@type": "PeopleAudience",
     "audienceType": "Analysts and consultants going for Consultant or Manager"
    },
    "additionalProperty": [
@@ -168,11 +226,26 @@
    "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5.0",
-    "reviewCount": 3,
+    "reviewCount": 4,
     "bestRating": "5",
     "worstRating": "1"
    },
    "review": [
+    {
+     "@type": "Review",
+     "author": {
+      "@type": "Person",
+      "name": "Angelina"
+     },
+     "datePublished": "2026-11-06",
+     "reviewBody": "Used this for my Manager case and really helped me to get promoted. Director said my case for promo was super clear.",
+     "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1"
+     }
+    },
     {
      "@type": "Review",
      "author": {
@@ -431,8 +504,9 @@
 
 <section class="wrap" id="reviews"><div class="pdp-reviews" data-reviews="promotion-case-template" style="max-width:68ch;border-top:none"><!-- reviews:start -->
 <h2 class="rv-h">Customer reviews</h2>
-<p class="rv-summary"><span class="rv-stars" aria-hidden="true">★★★★★</span> <strong>Rated 5.0 out of 5</strong> from 3 reviews</p>
+<p class="rv-summary"><span class="rv-stars" aria-hidden="true">★★★★★</span> <strong>Rated 5.0 out of 5</strong> from 4 reviews</p>
 <ul class="rv-list">
+<li class="rv-item"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div><blockquote class="rv-text">Used this for my Manager case and really helped me to get promoted. Director said my case for promo was super clear.</blockquote><p class="rv-by">Angelina · <time datetime="2026-11-06">6 November 2026</time></p></li>
 <li class="rv-item"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div><blockquote class="rv-text">Nailed my review.</blockquote><p class="rv-by">Rob · <time datetime="2026-10-30">30 October 2026</time></p></li>
 <li class="rv-item"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div><blockquote class="rv-text">This was really easy and clear to use, thought the format was helpful too! Would recommend</blockquote><p class="rv-by">Rita Patakk · <time datetime="2026-10-26">26 October 2026</time></p></li>
 <li class="rv-item"><div class="rv-top"><span class="rv-stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div><blockquote class="rv-text">Super useful - used it to do my case and my manager loved it! Helped me get promoted by structuring my thoughts like this!!!</blockquote><p class="rv-by">Rosalie · <time datetime="2026-10-25">25 October 2026</time></p></li>
