@@ -809,3 +809,6 @@ section.tm-group{margin-top:34px;padding:0}
 .ex-fig{margin:24px 0}
 .ex-fig img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(44,35,51,.08)}
 .ex-fig figcaption{font-size:.82rem;color:var(--ink-soft);margin-top:8px}
+
+.sal-quick{background:var(--bg-soft);border:1px solid var(--line);border-left:4px solid var(--marigold);border-radius:14px;padding:16px 20px;margin:0 0 22px}
+.sal-quick p{margin:0;font-size:1rem}
