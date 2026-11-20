@@ -75,14 +75,17 @@
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links">
       <div class="nav-group">
-        <button class="nav-group-btn" aria-haspopup="true" aria-expanded="false">Work with me <span aria-hidden="true">&#9662;</span></button>
+        <button class="nav-group-btn" aria-haspopup="true" aria-expanded="false">Career <span aria-hidden="true">&#9662;</span></button>
         <div class="nav-menu">
-          <span class="nav-menu-h">Grow your business</span>
-          <a href="/consulting">Consulting</a>
-          <a href="/founder-coaching">Founder coaching</a>
-          <span class="nav-menu-h">Grow your career</span>
           <a href="/career-coaching">Career coaching</a>
           <a href="/women-in-corporate">Women in corporate</a>
+        </div>
+      </div>
+      <div class="nav-group">
+        <button class="nav-group-btn" aria-haspopup="true" aria-expanded="false">Business <span aria-hidden="true">&#9662;</span></button>
+        <div class="nav-menu">
+          <a href="/consulting">Consulting</a>
+          <a href="/founder-coaching">Founder coaching</a>
         </div>
       </div>
       <a href="/toolkit">Toolkit</a>
@@ -172,7 +175,7 @@
   <p class="copyright">© Kajol Phadnis Patel 2026. All rights reserved. · <a href="/privacy" style="color:inherit">Privacy policy</a></p>
 </div></footer>
 <script>
-(function(){var t=document.querySelector('.nav-toggle');if(t)t.addEventListener('click',function(){var n=t.closest('nav');var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});var g=document.querySelector('.nav-group-btn');if(g)g.addEventListener('click',function(e){if(window.innerWidth<=820){e.preventDefault();var grp=g.closest('.nav-group');var o=grp.classList.toggle('open');g.setAttribute('aria-expanded',o);}});})();
+(function(){var t=document.querySelector('.nav-toggle');if(t)t.addEventListener('click',function(){var n=t.closest('nav');var o=n.classList.toggle('open');t.setAttribute('aria-expanded',o);});document.querySelectorAll('.nav-group-btn').forEach(function(g){g.addEventListener('click',function(e){if(window.innerWidth<=820){e.preventDefault();var grp=g.closest('.nav-group');var o=grp.classList.toggle('open');g.setAttribute('aria-expanded',o);}});});})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script>

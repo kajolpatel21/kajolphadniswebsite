@@ -845,3 +845,5 @@ body.longread .intro-holds,
 body.longread .ws-intro,
 body.longread section.next-step-wrap .next-step{max-width:none}
 body.longread .prose p,body.longread .prose li{font-size:1.06rem}
+
+@media(max-width:820px){.nav-links>a.nav-cta{text-align:center}}
