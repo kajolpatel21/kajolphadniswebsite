@@ -828,3 +828,20 @@ section.wrap{padding-top:88px;padding-bottom:88px}
   .page-hero + section, .page-hero + section.wrap{padding-top:32px}
   .card{padding:26px 22px}
 }
+
+/* ---------- Long-read pages: one centred reading column, text runs its full width ---------- */
+body.longread header.page-hero,
+body.longread section.wrap,
+body.longread section > .wrap{max-width:860px}
+body.longread h1,
+body.longread .lead,
+body.longread .lead-sub,
+body.longread .standfirst,
+body.longread .prose,
+body.longread .prose .inline-next,
+body.longread .buybox,
+body.longread .basenote,
+body.longread .intro-holds,
+body.longread .ws-intro,
+body.longread section.next-step-wrap .next-step{max-width:none}
+body.longread .prose p,body.longread .prose li{font-size:1.06rem}
