@@ -10,6 +10,7 @@ Updates, for each product:
   - the block between <!-- reviews:start --> and <!-- reviews:end --> in each page
   - aggregateRating + review on the Product JSON-LD of the product page
   - the "Rated ..." sentence on the product's line in llms.txt
+  - the hero rating line between <!-- rating:start --> and <!-- rating:end --> on the product page
 """
 import html, json, re, sys
 from datetime import date
@@ -21,7 +22,8 @@ PRODUCTS = {
     "promotion-case-template": {
         "pages": [("promotion-case-template.html", "h2"), ("toolkit.html", "h3")],
         "schema_page": "promotion-case-template.html",
-        "llms_anchor": "£9.99, instant download, 14-day money-back guarantee.",
+        "rating_pages": ["index.html"],  # extra pages that show the rating line between rating markers
+        "llms_anchor": "£9.99, instant download, 7-day money-back guarantee.",
         "empty": "No reviews yet. If you've used it, I'd love to hear how it went, "
                  "and your review will help the next person decide.",
     },
@@ -91,6 +93,16 @@ def update_schema(text, reviews):
     return text[:m.start(2)] + body + text[m.end(2):]
 
 
+def update_rating_line(text, reviews):
+    """Keep the hero's "5.0 from 4 buyer reviews" line (between rating markers) in step with the reviews."""
+    if not reviews:
+        return text
+    avg = sum(r["rating"] for r in reviews) / len(reviews)
+    n = len(reviews)
+    line = f"{avg:.1f} from {n} buyer review{'s' if n > 1 else ''}"
+    return re.sub(r"(<!-- rating:start -->).*?(<!-- rating:end -->)", lambda m: f"{m.group(1)}{line}{m.group(2)}", text, flags=re.S)
+
+
 def update_llms(text, anchor, reviews):
     text = re.sub(re.escape(anchor) + r"( Rated [0-9.]+/5 from \d+ buyer reviews?\.)?", anchor, text)
     if reviews:
@@ -112,7 +124,11 @@ def main():
             t = replace_block(p.read_text(), key, block(reviews, heading, cfg["empty"]))
             if page == cfg["schema_page"]:
                 t = update_schema(t, reviews)
+                t = update_rating_line(t, reviews)
             p.write_text(t)
+        for page in cfg.get("rating_pages", []):
+            p = ROOT / page
+            p.write_text(update_rating_line(p.read_text(), reviews))
         llms = update_llms(llms, cfg["llms_anchor"], reviews)
         print(f"{key}: {len(reviews)} review(s) written")
     (ROOT / "llms.txt").write_text(llms)

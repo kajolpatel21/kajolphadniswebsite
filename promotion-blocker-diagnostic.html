@@ -83,6 +83,12 @@
   .intro p{margin-top:18px;font-size:1.12rem;color:var(--ink-soft)}
   .intro .btn{margin-top:28px}
   .meta-line{margin-top:18px;font-size:.85rem;color:var(--ink-soft)}
+  /* styles.css has a grid ".result" row style for another page; reset it for the quiz result container */
+  .quiz .result{display:block;grid-template-columns:none;gap:0;padding:0;border-bottom:0}
+  .quiz .result p{color:var(--ink-soft)}
+  .quiz .result .result-desc{font-size:1.1rem;margin-top:18px}
+  .quiz .result .email-box p{font-size:.95rem;margin-top:6px}
+  .quiz .result .result-tpl{color:var(--ink);font-size:1rem;margin-top:26px}
   .result-badge{display:inline-block;background:var(--teal-soft);color:var(--teal);font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:16px}
   .result h1,.result h2{font-size:clamp(1.8rem,4.5vw,2.6rem)}
   .result-desc{margin-top:18px;font-size:1.1rem;color:var(--ink-soft)}
@@ -98,7 +104,9 @@
   .email-form input{flex:1;min-width:220px;padding:14px 16px;border:1.5px solid var(--line);border-radius:100px;font-family:inherit;font-size:.95rem;background:#fff;color:var(--ink)}
   .email-form input:focus{outline:none;border-color:var(--marigold)}
   .email-ok{display:none;background:var(--teal);color:#fff;border-radius:14px;padding:16px 18px;font-weight:600;margin-top:16px}
-  .result-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+  .result-tpl{margin-top:26px;font-weight:600;color:var(--ink)}
+  .result-tpl:empty{display:none}
+  .result-cta{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
   .result-share{margin-top:22px;font-size:.9rem;color:var(--ink-soft)}
   .result-share button{background:none;border:none;color:var(--teal);font-family:inherit;font-weight:700;cursor:pointer;padding:0}
 </style>
@@ -164,6 +172,7 @@
         <p class="email-err" id="err" hidden style="margin-top:12px;color:#b3261e;font-weight:600"></p>
         <div class="email-ok" id="ok">🎉 On its way — check your inbox to confirm.</div>
       </div>
+      <p class="result-tpl" id="r-tpl"></p>
       <div class="result-cta" id="r-cta"></div>
       <p class="result-share"><button id="restart">↺ Retake the diagnostic</button></p>
     </div>
@@ -241,19 +250,20 @@ var QUESTIONS=[
     ["D","Stating your goal and a plan to your manager."]]}
 ];
 
+var TPL_LINE={"A": "The template's \"Your visibility &amp; who backs you\" part puts your wins in front of the people who vote.", "B": "The template's \"Your visibility &amp; who backs you\" part names the three people who will argue for you.", "C": "The template's \"Proof you already operate a level up\" part turns stretch work into evidence the panel can see.", "D": "The template's \"The ask &amp; your 90-day plan\" part is the written ask and plan, ready to fill in."};
 var RESULTS={
   A:{name:"The Visibility Gap",desc:"You're doing the work; the people who decide just can't see it. A promotion is basically a story other people tell about you when you're not in the room — so give them a good one. Fix the visibility and the case makes itself.",
      fixes:[["Share outcomes, not tasks","Talk in results and numbers — what changed because of you, not what you did."],["Get into the deciding rooms","Find ways to present, contribute and be seen by the people who vote on promotions."],["Keep a brag doc","Log your wins as they happen so review season writes itself."]],
-     cta:[["Read your full playbook","/promo-visibility-gap","btn-marigold"],["Explore career coaching","/career-coaching","btn-ghost"],["Grab the Career & Corporate Toolkit","/toolkit","btn-ghost"]]},
+     cta:[["Read your full playbook","/promo-visibility-gap","btn-marigold"],["Get the template · £9.99","/promotion-case-template","btn-ink"],["Explore career coaching","/career-coaching","btn-ghost"]]},
   B:{name:"The Sponsor Gap",desc:"You might have mentors, but no sponsor — someone senior who argues for you when you're not there. Mentors talk to you; sponsors talk about you. I learned this the hard way when the one director I'd bet on left for Dubai and I was back to zero. Build a few, not one.",
      fixes:[["Identify three potential sponsors","Senior people whose goals you can visibly help achieve."],["Deliver value they'll remember","Do work that makes them look good — that's how sponsorship is earned."],["Make a specific ask","Sponsors back people with clear goals. Tell them exactly what you're aiming for."]],
-     cta:[["Read your full playbook","/promo-sponsor-gap","btn-marigold"],["Explore career coaching","/career-coaching","btn-ghost"],["Women in corporate","/women-in-corporate","btn-ghost"]]},
+     cta:[["Read your full playbook","/promo-sponsor-gap","btn-marigold"],["Get the template · £9.99","/promotion-case-template","btn-ink"],["Explore career coaching","/career-coaching","btn-ghost"]]},
   C:{name:"The Scope Gap",desc:"There's no evidence yet that you can operate a level up — so there's nothing to promote you on. A promotion isn't a bet that you could do the next job; it's recognition of work you're already doing at it. Act a level up before the title, so it's not a punt.",
      fixes:[["Act at the next level now","Take on a slice of your target role before anyone gives you the title."],["Volunteer for a stretch project","A visible, next-level piece of work becomes your evidence."],["Ask what 'ready' looks like","Get the explicit criteria for the next level, then go collect them."]],
-     cta:[["Read your full playbook","/promo-scope-gap","btn-marigold"],["Explore career coaching","/career-coaching","btn-ghost"],["Women in corporate","/women-in-corporate","btn-ghost"]]},
+     cta:[["Read your full playbook","/promo-scope-gap","btn-marigold"],["Get the template · £9.99","/promotion-case-template","btn-ink"],["Explore career coaching","/career-coaching","btn-ghost"]]},
   D:{name:"The Ask Gap",desc:"You've never made the ask, or the plan, explicit — so no one's working towards it, including you. Nobody promotes a secret. It's the easiest blocker to fix, and often the fastest to pay off.",
      fixes:[["Say it clearly","Tell your manager what you want and by when — out loud, on the record."],["Agree the criteria","Turn 'maybe someday' into a concrete list of what earns the step."],["Build a 90-day plan","Work backwards from the promotion to what you do this quarter."]],
-     cta:[["Read your full playbook","/promo-ask-gap","btn-marigold"],["Explore career coaching","/career-coaching","btn-ghost"],["Grab the Career & Corporate Toolkit","/toolkit","btn-ghost"]]}
+     cta:[["Read your full playbook","/promo-ask-gap","btn-marigold"],["Get the template · £9.99","/promotion-case-template","btn-ink"],["Explore career coaching","/career-coaching","btn-ghost"]]}
 };
 
 var qWrap=document.getElementById('questions');
@@ -304,7 +314,8 @@ function finish(){
   r.fixes.forEach(function(f,i){ var d=document.createElement('div'); d.className='fix'; d.innerHTML='<div class="n">'+(i+1)+'</div><p><strong>'+f[0]+'.</strong> '+f[1]+'</p>'; fx.appendChild(d); });
   document.getElementById('r-email-h').textContent='Get your full '+r.name.replace('The ','')+' plan';
   var cta=document.getElementById('r-cta'); cta.innerHTML='';
-  r.cta.forEach(function(c){ var a=document.createElement('a'); a.className='btn '+c[2]; a.href=c[1]; a.textContent=c[0]; cta.appendChild(a); });
+  document.getElementById('r-tpl').innerHTML=TPL_LINE[winner];
+  r.cta.forEach(function(c){ var a=document.createElement('a'); a.className='btn '+c[2]; a.href=c[1]; a.textContent=c[0]; if(c[1]==='/promotion-case-template'){ a.addEventListener('click',function(){ if(window.gtag) gtag('event','select_promotion',{promotion_id:'promotion-case-template',promotion_name:'quiz_result_'+r.name,creative_slot:'quiz_result'}); }); } cta.appendChild(a); });
   show('result');
 }
 

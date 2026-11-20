@@ -681,6 +681,19 @@
     .readlist a,.readlist a:hover{padding:22px 22px}
   }
   @media(max-width:820px){.nav-links>a.nav-cta{text-align:center}}
+  /* Product strip under the awards line */
+  section.promo-strip{padding:30px 0;background:var(--marigold-soft);border-bottom:1px solid var(--line)}
+  .promo-strip-in{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px}
+  .ps-img{flex:none;line-height:0}
+  .ps-img img{width:96px;height:96px;border-radius:14px;box-shadow:0 8px 20px rgba(46,20,90,.2)}
+  .ps-txt{flex:1 1 320px;min-width:0}
+  .ps-kicker{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--marigold-text);margin-bottom:4px}
+  .promo-strip h2{font-size:1.45rem;line-height:1.2;margin:0 0 4px}
+  .promo-strip p{color:var(--ink)}
+  .ps-rate{white-space:nowrap;font-weight:600}
+  .ps-buy{display:flex;align-items:center;gap:18px}
+  .ps-price{font-weight:800;font-size:1.7rem;letter-spacing:-.02em}
+  @media(max-width:640px){.ps-buy{width:100%;justify-content:space-between}.ps-buy .btn{flex:1;text-align:center}}
 </style>
 </head>
 <body>
@@ -738,6 +751,18 @@
     <div class="trust-track"><div class="award-pill"><span class="trophy">🏆</span>Deloitte Future Leader 2024 — Top 5%</div><div class="award-pill"><span class="trophy">🏆</span>Top 100 Women in Tech</div><div class="award-pill"><span class="trophy">🏆</span>MCA Young Consultant Finalist</div><div class="award-pill"><span class="trophy">🏆</span>Women of the Future — Tech &amp; Digital Finalist</div><div class="award-pill" aria-hidden="true"><span class="trophy">🏆</span>Deloitte Future Leader 2024 — Top 5%</div><div class="award-pill" aria-hidden="true"><span class="trophy">🏆</span>Top 100 Women in Tech</div><div class="award-pill" aria-hidden="true"><span class="trophy">🏆</span>MCA Young Consultant Finalist</div><div class="award-pill" aria-hidden="true"><span class="trophy">🏆</span>Women of the Future — Tech &amp; Digital Finalist</div></div>
   </div>
 </div>
+
+<section class="promo-strip" aria-label="Promotion Case Template">
+  <div class="wrap promo-strip-in">
+    <a class="ps-img" href="/promotion-case-template" tabindex="-1" aria-hidden="true"><img src="/promotion-case-cover-320.webp" alt="" width="96" height="96" loading="lazy" decoding="async"></a>
+    <div class="ps-txt">
+      <p class="ps-kicker">Available now · Template</p>
+      <h2>The Promotion Case Template</h2>
+      <p>The business case that gets you promoted. Twelve editable slides, two formats. <span class="ps-rate"><span aria-hidden="true">★★★★★</span> <!-- rating:start -->5.0 from 4 buyer reviews<!-- rating:end --></span></p>
+    </div>
+    <div class="ps-buy"><span class="ps-price">£9.99</span><a class="btn btn-marigold" href="/promotion-case-template">Get the template</a></div>
+  </div>
+</section>
 
 <section class="tinted" id="help">
   <div class="wrap">
