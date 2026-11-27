@@ -132,19 +132,19 @@
     <p class="section-intro">Strategy only counts if it shows up in the results. A few chapters from client work over the years:</p>
     <div class="results">
       <div class="result reveal">
-        <div class="num"><span class="n" data-target="240">0</span><span class="unit">%</span></div>
+        <div class="num"><span class="n" data-target="240">240</span><span class="unit">%</span></div>
         <div><span class="label">Grow mobile app revenue</span><p>Mobile app revenue growth for a flagship Middle East tourism destination</p></div>
       </div>
       <div class="result reveal">
-        <div class="num"><span class="n" data-target="10" data-prefix="$">$0</span><span class="unit">m</span></div>
+        <div class="num"><span class="n" data-target="10" data-prefix="$">$10</span><span class="unit">m</span></div>
         <div><span class="label">Make AI pay for itself</span><p>Projected margin uplift from an AI programme across 70+ brands</p></div>
       </div>
       <div class="result reveal">
-        <div class="num"><span class="n" data-target="200">0</span><span class="unit">%</span></div>
+        <div class="num"><span class="n" data-target="200">200</span><span class="unit">%</span></div>
         <div><span class="label">Grow loyalty and repeat transactions</span><p>Digital transaction growth via a new loyalty proposition, online and in-store</p></div>
       </div>
       <div class="result reveal">
-        <div class="num"><span class="n" data-target="15">0</span><span class="unit">%</span></div>
+        <div class="num"><span class="n" data-target="15">15</span><span class="unit">%</span></div>
         <div><span class="label">Launch new products and categories</span><p>DTC revenue uplift launching a new product category across five markets</p></div>
       </div>
     </div>
@@ -301,6 +301,7 @@
     .then(function(r){
       if(!r.res.ok || !r.data || r.data.success!==true) throw new Error((r.data&&r.data.message)||'send failed');
       wrap.hidden=true; okEl.hidden=false;
+      if(window.gtag) gtag('event','generate_lead',{method:'consulting_form'});
     })
     .catch(function(){ fail('Something went wrong — please try again, or email '+CONTACT_EMAIL+' directly.'); });
   });
@@ -308,5 +309,6 @@
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/consent.js"></script>
+<script defer src="/site.js?v=1"></script>
 </body>
 </html>
