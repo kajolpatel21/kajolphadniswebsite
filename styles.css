@@ -907,3 +907,15 @@ section.pdp-inline-wrap{padding-top:0;padding-bottom:0}
 
 section.pdp-intro{padding-top:8px;padding-bottom:0}
 section.pdp-intro + section.wrap{padding-top:48px}
+
+/* ---------- Inline newsletter signup (articles) ---------- */
+section.nl-wrap{padding-top:0}
+.nl-box{max-width:68ch;background:var(--plum-soft);border-radius:var(--radius);padding:26px 28px}
+.nl-box h2{font-size:1.3rem;margin:0 0 6px}
+.nl-box p{margin:0 0 14px;font-size:.95rem}
+.nl-form{display:flex;flex-wrap:wrap;gap:10px}
+.nl-form[hidden]{display:none}
+.nl-form input{flex:1 1 220px;padding:13px 16px;border:1.5px solid var(--line);border-radius:100px;font:inherit;font-size:.95rem;background:#fff;color:var(--ink)}
+.nl-form input:focus{outline:none;border-color:var(--marigold)}
+.nl-ok{font-weight:700;color:var(--teal)}
+.nl-err{font-weight:600;color:#8c2f2f}
